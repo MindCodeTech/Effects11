@@ -1,0 +1,1 @@
+EFFECTS11_ROOT = C:\your directory for\EFFECTS11_ROOT

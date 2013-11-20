@@ -1,0 +1,61 @@
+win32
+################################
+static lib
+#
+release
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32
+#
+debug profile
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32
+copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32
+##################################
+
+#
+dinamic lib
+#
+release
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Bin32
+copy $(OutDir)$(TargetName).lib $(EFFECTS11_ROOT)\Lib32
+#
+debug profile
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Bin32
+copy $(OutDir)$(TargetName).lib $(EFFECTS11_ROOT)\Lib32
+copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Bin32
+###########################################################################
+
+win64
+################################
+
+#
+static lib
+#
+release
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64
+#
+debug profile
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64
+copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64
+##################################################################
+##################################################################
+##################################################################
+
+dinamic lib
+#
+release
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Bin64
+copy $(OutDir)$(TargetName).lib $(EFFECTS11_ROOT)\Lib64
+
+debug profile
+copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Bin64
+copy $(OutDir)$(TargetName).lib $(EFFECTS11_ROOT)\Lib64
+copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Bin64
+#############################################################################
+
+
+copy Effects11 dll to demos root
+win32
+copy $(OutDir)$(TargetName)$(TargetExt)  $(D3D11DEMOS_ROOT)\Bin32
+copy $(OutDir)$(TargetName).pdb  $(D3D11DEMOS_ROOT)\Bin32
+win64
+copy $(OutDir)$(TargetName)$(TargetExt)  $(D3D11DEMOS_ROOT)\Bin64
+copy $(OutDir)$(TargetName).pdb  $(D3D11DEMOS_ROOT)\Bin64
