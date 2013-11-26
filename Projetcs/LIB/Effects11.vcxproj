@@ -147,7 +147,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <OmitFramePointers />
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -170,7 +170,7 @@
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32
-copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
+copy $(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -194,7 +194,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
       <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -217,7 +217,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64
-copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
+copy $(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -241,7 +241,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <OmitFramePointers />
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -268,7 +268,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </ResourceCompile>
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32
-copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
+copy $(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PostBuildEvent>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -290,7 +290,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -312,7 +312,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     <PreBuildEvent />
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64
-copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
+copy $(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -333,7 +333,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
       <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;PROFILE;_PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <OmitFramePointers />
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -355,7 +355,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     <PreBuildEvent />
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32
-copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
+copy $(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -378,7 +378,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;PROFILE;_PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -400,7 +400,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     <PreBuildEvent />
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64
-copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
+copy $(OutDir)$(TargetName)_vc$(PlatformToolsetVersion).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
