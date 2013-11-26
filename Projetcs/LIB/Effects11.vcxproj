@@ -143,7 +143,7 @@
       <AdditionalIncludeDirectories>..\..\effects11\Binary;..\..\effects11\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pchfx.h</PrecompiledHeaderFile>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;_DEBUG;DEBUG;PROFILE;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_DEBUG;DEBUG;PROFILE;_PROFILE;_WINDOWS;WINDOWS;_LIB;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <OmitFramePointers />
@@ -174,8 +174,11 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">
     <ClCompile>
@@ -188,7 +191,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
       <AdditionalIncludeDirectories>..\..\effects11\Binary;..\..\effects11\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pchfx.h</PrecompiledHeaderFile>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;_DEBUG;DEBUG;PROFILE;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
@@ -218,7 +221,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -232,12 +235,13 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
       <AdditionalIncludeDirectories>..\..\effects11\Binary;..\..\effects11\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pchfx.h</PrecompiledHeaderFile>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;NDEBUG;_RELEASE;RELEASE;_WINDOWS;WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;_RELEASE;RELEASE;_WINDOWS;WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <OmitFramePointers />
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -260,11 +264,15 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     <PostBuildEvent />
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;_WINDOWS;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32</Command>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib32
+copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PostBuildEvent>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|X64'">
     <ClCompile>
@@ -277,11 +285,12 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
       <AdditionalIncludeDirectories>..\..\effects11\Binary;..\..\effects11\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pchfx.h</PrecompiledHeaderFile>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;NDEBUG;_RELEASE;RELEASE;_WINDOWS;WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;_RELEASE;RELEASE;_WINDOWS;WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -302,11 +311,12 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </Manifest>
     <PreBuildEvent />
     <PostBuildEvent>
-      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64</Command>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(EFFECTS11_ROOT)\Lib64
+copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;_WINDOWS;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
@@ -320,7 +330,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
       <AdditionalIncludeDirectories>..\..\effects11\Binary;..\..\effects11\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pchfx.h</PrecompiledHeaderFile>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;NDEBUG;PROFILE;_PROFILE;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;PROFILE;_PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <OmitFramePointers />
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
@@ -349,8 +359,11 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;PROFILE;_PROFILE;_WINDOWS;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;PROFILE;_PROFILE;_WINDOWS;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|X64'">
     <ClCompile>
@@ -363,7 +376,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib32</Command>
       <AdditionalIncludeDirectories>..\..\effects11\Binary;..\..\effects11\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pchfx.h</PrecompiledHeaderFile>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;NDEBUG;PROFILE;_PROFILE;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;PROFILE;_PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -391,7 +404,7 @@ copy $(OutDir)$(TargetName).pdb $(EFFECTS11_ROOT)\Lib64</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\effects11;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;PROFILE;_PROFILE;_WINDOWS;_WINDOWS;_DLL;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;LIB_EXPORT;LIB_STATIC;NDEBUG;PROFILE;_PROFILE;_WINDOWS;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;EFFECTS11LIB_EXPORT;DXGI_1_2_FORMATS;_WIN7_PLATFORM_UPDATE;_WIN32_WINNT=0x0602;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
