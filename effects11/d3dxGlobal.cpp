@@ -15,6 +15,7 @@
 
 #include "pchfx.h"
 
+using namespace D3DX11Effects;
 
 #ifdef extern_cplus
 extern "C" {
@@ -31,11 +32,11 @@ namespace D3DX11Core
 // CMemoryStream - A class to simplify reading binary data
 //////////////////////////////////////////////////////////////////////////
 
-CMemoryStream::CMemoryStream() : m_pData(nullptr), m_cbData(0), m_readPtr(0)
+EFFECTSAPI CMemoryStream::CMemoryStream() : m_pData(nullptr), m_cbData(0), m_readPtr(0)
 {
 }
 
-CMemoryStream::~CMemoryStream()
+EFFECTSAPI CMemoryStream::~CMemoryStream()
 {
 }
 
@@ -128,11 +129,13 @@ EFFECTSAPI HRESULT CMemoryStream::Seek(_In_ size_t offset)
 
 }
 
+//namespace D3DX11Effects
+//{
 //////////////////////////////////////////////////////////////////////////
 // CDataBlock - used to dynamically build up the effect file in memory
 //////////////////////////////////////////////////////////////////////////
 
-CDataBlock::CDataBlock() :
+EFFECTSAPI CDataBlock::CDataBlock() :
     m_size(0),
     m_maxSize(0),
     m_pData(nullptr),
@@ -141,13 +144,13 @@ CDataBlock::CDataBlock() :
 {
 }
 
-CDataBlock::~CDataBlock()
+EFFECTSAPI CDataBlock::~CDataBlock()
 {
     SAFE_DELETE_ARRAY(m_pData);
     SAFE_DELETE(m_pNext);
 }
 
-void CDataBlock::EnableAlignment()
+EFFECTSAPI void CDataBlock::EnableAlignment()
 {
     m_IsAligned = true;
 }
@@ -259,7 +262,7 @@ EFFECTSAPI void* CDataBlock::Allocate(uint32_t bufferSize, CDataBlock **ppBlock)
 
 //////////////////////////////////////////////////////////////////////////
 
-CDataBlockStore::CDataBlockStore() :
+EFFECTSAPI CDataBlockStore::CDataBlockStore() :
     m_pFirst(nullptr),
     m_pLast(nullptr),
     m_Size(0),
@@ -271,7 +274,7 @@ CDataBlockStore::CDataBlockStore() :
 #endif
 }
 
-CDataBlockStore::~CDataBlockStore()
+EFFECTSAPI CDataBlockStore::~CDataBlockStore()
 {
     // Can't just do SAFE_DELETE(m_pFirst) since it blows the stack when deleting long chains of data
     CDataBlock* pData = m_pFirst;
@@ -286,7 +289,7 @@ CDataBlockStore::~CDataBlockStore()
     // m_pLast will be deleted automatically
 }
 
-void CDataBlockStore::EnableAlignment()
+EFFECTSAPI void CDataBlockStore::EnableAlignment()
 {
     m_IsAligned = true;
 }
@@ -394,6 +397,7 @@ EFFECTSAPI void __cdecl D3DXDebugPrintf(UINT lvl, LPCSTR szFormat, ...)
 }
 #endif // _DEBUG
 
+//}
 
 #if defined(extern_cplus) && defined(extern_cplusplus)
 	}

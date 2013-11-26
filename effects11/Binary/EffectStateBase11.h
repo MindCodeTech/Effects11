@@ -57,8 +57,8 @@ struct EFFECTSAPI LValue
 
 #define LVALUE_END()    { nullptr, D3D_SVT_UINT, 0, 0, 0, nullptr }
 
-extern EFFECTSAPI const LValue g_lvGeneral[];
-extern EFFECTSAPI const uint32_t g_lvGeneralCount;
+extern const LValue g_lvGeneral[];
+extern const uint32_t g_lvGeneralCount;
 
 } // end namespace D3DX11Effects
 

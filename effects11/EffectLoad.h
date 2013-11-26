@@ -24,6 +24,7 @@ extern "C" {
 	extern "C++" {
 
 #endif
+
 namespace D3DX11Effects
 {
 

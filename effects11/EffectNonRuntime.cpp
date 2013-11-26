@@ -19,8 +19,7 @@
 #include "pchfx.h"
 #include "SOParser.h"
 
-using namespace D3DX11Effects;
-using namespace Effects11;
+//using namespace D3DX11Effects;
 
 #ifdef extern_cplus
 extern "C" {
@@ -2756,7 +2755,7 @@ SMember * CreateNewMember(_In_ SType *pType, _In_ bool IsAnnotation)
 }
 
 // Global variables are created in place because storage for them was allocated during LoadEffect
-EFFECTSAPI HRESULT PlacementNewVariable(_In_ void *pVar, _In_ SType *pType, _In_ bool IsAnnotation)
+HRESULT PlacementNewVariable(_In_ void *pVar, _In_ SType *pType, _In_ bool IsAnnotation)
 {
     switch (pType->VarType)
     {

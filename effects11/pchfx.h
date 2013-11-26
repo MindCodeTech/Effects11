@@ -16,7 +16,7 @@
 #pragma once
 
 #ifndef UNICODE
-#error "DXUT requires a Unicode build."
+#error "Effects11 requires a Unicode build."
 #endif
 
 // Exclude rarely-used stuff from Windows headers
@@ -38,9 +38,6 @@
 #endif
 
 // If app hasn't choosen, set to work with Windows Vista and beyond
-
-
-//#undef _WIN32_WINNT
 #ifndef WINVER
 #define WINVER         0x0602
 #endif
@@ -57,16 +54,17 @@
 
 #include "Effects11exp.h"
 
-#if defined(EFFECTS11LIB_EXPORT) || defined(_LIB) || defined(EFFECTS11LIB_IMPORT) || defined(_DLL) && !defined(DXUT_AUTOLIB)
-#define EFFECTS11_AUTOLIB
+#if defined(_MSC_VER) && defined(EFFECTS11LIB_EXPORT) || defined(_LIB) || defined(EFFECTS11LIB_IMPORT) || defined(_DLL) && !defined(DXUT_AUTOLIB)
+#define EFFECTS11_AUTOLIB 0
 #endif
 
-// #define DXUT_AUTOLIB to automatically include the libs needed for DXUT
+// #define EFFECTS11_AUTOLIB to automatically include the libs needed for EFFECTS11
+#ifndef DXUT_AUTOLIB
 #ifdef EFFECTS11_AUTOLIB
 #pragma comment( lib, "d3d11.lib" )
-#pragma comment( lib, "d3d10_1.lib" )
-#pragma comment( lib, "d3d10.lib" )
-#pragma comment( lib, "comctl32.lib" )
+// #pragma comment( lib, "d3d10_1.lib" )
+// #pragma comment( lib, "d3d10.lib" )
+#pragma comment( lib, "ComCtl32.Lib" )
 #pragma comment( lib, "dxgi.lib" )
 #pragma comment( lib, "dxguid.lib" )
 #pragma comment( lib, "d3dcompiler.lib" )
@@ -85,15 +83,15 @@
 #pragma comment( lib, "WinMM.Lib" )
 #pragma comment( lib, "Imm32.Lib" )
 #pragma comment( lib, "Version.Lib" )
-
+#endif
 #endif
 
 #ifdef EFFECTS11LIB_IMPORT
 #ifdef EFFECTS11LIB_DLL
 #ifdef _DEBUG
-#pragma comment( lib, "Effects11_d.Lib" )
+#pragma comment( lib, "Effects11_d.lib" )
 #else
-#pragma comment( lib, "Effects11.Lib" )
+#pragma comment( lib, "Effects11.lib" )
 #endif
 #elif EFFECTS11LIB_STATIC
 #ifdef _DEBUG
@@ -117,9 +115,9 @@
 #pragma pack(push)
 #pragma pack(8)
 
-#ifdef DEFINE_GUID
-#undef DEFINE_GUID
-#endif
+// #ifdef DEFINE_GUID
+// #undef DEFINE_GUID
+// #endif
 
 // Standard Windows includes
 #include <windows.h>
@@ -141,14 +139,13 @@
 //#define D3DX11_EFFECTS_VERSION 1108
 
 // Direct3D11 includes
-#include <d3dcommon.h>
-#include <dxgi1_2.h>
-#include <d3d11_1.h>
+//#include <d3dcommon.h>
+#include <dxgi1_3.h>
+#include <d3d11_2.h>
 #include <d3d11shader.h>
-#include <d3d10_1.h>
+//#include <d3d10_1.h>
 #include <d3dcompiler.h>
-#include <dxgiformat.h>
-#include <d2d1_1.h>
+#include <d2d1_2.h>
 #include <d3dcsx.h>
 
 #if defined(DEBUG) || defined(_DEBUG)
@@ -278,7 +275,7 @@
 #include "d3dxGlobal.h"
 
 #include "Effect.h"
-#include "EffectStateBase11.h"
+//#include "EffectStateBase11.h"
 
 #include "EffectLoad.h"
 

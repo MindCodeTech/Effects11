@@ -244,7 +244,7 @@ const LValue g_lvGeneral[] =
 #define NUM_STATES (sizeof(g_lvGeneral) / sizeof(LValue))
 #define MAX_VECTOR_SCALAR_INDEX 8
 
-EFFECTSAPI const uint32_t g_lvGeneralCount = NUM_STATES;
+const uint32_t g_lvGeneralCount = NUM_STATES;
 
 } // end namespace D3DX11Effects
 

@@ -14,7 +14,7 @@
 //--------------------------------------------------------------------------------------
 #include "pchfx.h"
 
-using namespace Effects11;
+using namespace D3DX11Effects;
 
 #ifdef extern_cplus
 extern "C" {
@@ -24,9 +24,6 @@ extern "C" {
 	extern "C++" {
 #endif
 
-		namespace D3DX11Effects
-		{
-			
 //-------------------------------------------------------------------------------------
 
 static HRESULT LoadBinaryFromFile( _In_z_ LPCWSTR pFileName, _Inout_ std::unique_ptr<uint8_t[]>& data, _Out_ uint32_t& size )
@@ -185,7 +182,7 @@ lExit:
 //--------------------------------------------------------------------------------------
 
 _Use_decl_annotations_
-EFFECTSAPI HRESULT D3DX11CompileEffectFromMemory( LPCVOID pData, SIZE_T DataLength, LPCSTR srcName,
+EFFECTSAPI HRESULT WINAPI D3DX11CompileEffectFromMemory( LPCVOID pData, SIZE_T DataLength, LPCSTR srcName,
                                        const D3D_SHADER_MACRO *pDefines, ID3DInclude *pInclude, UINT HLSLFlags, UINT FXFlags,
                                        ID3D11Device *pDevice, ID3DX11Effect **ppEffect, ID3DBlob **ppErrors )
 {
@@ -225,7 +222,7 @@ lExit:
 //--------------------------------------------------------------------------------------
 
 _Use_decl_annotations_
-EFFECTSAPI HRESULT D3DX11CompileEffectFromFile( LPCWSTR pFileName,
+EFFECTSAPI HRESULT WINAPI D3DX11CompileEffectFromFile( LPCWSTR pFileName,
                                      const D3D_SHADER_MACRO *pDefines, ID3DInclude *pInclude, UINT HLSLFlags, UINT FXFlags,
                                      ID3D11Device *pDevice, ID3DX11Effect **ppEffect, ID3DBlob **ppErrors )
 {
@@ -332,8 +329,6 @@ lExit:
         SAFE_RELEASE(*ppEffect);
     }
     return hr;
-}
-
 }
 
 #if defined(extern_cplus) && defined(extern_cplusplus)

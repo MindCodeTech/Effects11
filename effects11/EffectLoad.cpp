@@ -13,6 +13,8 @@
 // http://go.microsoft.com/fwlink/p/?LinkId=271568
 //--------------------------------------------------------------------------------------
 
+#define _PCH_BUILD 0
+
 #include "pchfx.h"
 
 #include "EffectStates11.h"

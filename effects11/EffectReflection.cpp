@@ -55,7 +55,7 @@ SEffectInvalidGroup g_InvalidGroup;
 // Helper routine implementations
 //////////////////////////////////////////////////////////////////////////
 
-EFFECTSAPI ID3DX11EffectConstantBuffer * NoParentCB()
+ID3DX11EffectConstantBuffer * NoParentCB()
 {
     DPF(0, "ID3DX11EffectVariable::GetParentConstantBuffer: Variable does not have a parent constant buffer");
     // have to typecast because the type of g_InvalidScalarVariable has not been declared yet
@@ -63,7 +63,7 @@ EFFECTSAPI ID3DX11EffectConstantBuffer * NoParentCB()
 }
 
 _Use_decl_annotations_
-EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByIndexHelper(const char *pClassName, uint32_t Index, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
+ID3DX11EffectVariable * GetAnnotationByIndexHelper(const char *pClassName, uint32_t Index, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
 {
     if (Index >= AnnotationCount)
     {
@@ -75,7 +75,7 @@ EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByIndexHelper(const char *pClass
 }
 
 _Use_decl_annotations_
-EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByNameHelper(const char *pClassName, LPCSTR Name, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
+ID3DX11EffectVariable * GetAnnotationByNameHelper(const char *pClassName, LPCSTR Name, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
 {
     uint32_t  i;
     for (i = 0; i < AnnotationCount; ++ i)

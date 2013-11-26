@@ -23,7 +23,7 @@ extern "C" {
 	extern "C++" {
 #endif
 
-		namespace Effects11
+		namespace D3DX11Effects
 		{
 
     // Helper utility converts D3D API failures into exceptions.

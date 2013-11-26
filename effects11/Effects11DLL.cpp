@@ -72,8 +72,7 @@ BOOL WINAPI DllMain(
 }
 
 #ifndef _PCH_BUILD
-#define _PCH_BUILD
+#define _PCH_BUILD 0
 #endif
 
 #include "pchfx.h"
-#undef _PCH_BUILD

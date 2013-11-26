@@ -17,12 +17,10 @@
 
 #include "pchfx.h"
 
-using namespace D3DX11Effects;
+//using namespace D3DX11Effects;
 
 using namespace D3DX11Debug;
-using namespace Effects11;
 
-using namespace Effects11;
 
 #ifdef extern_cplus
 extern "C" {

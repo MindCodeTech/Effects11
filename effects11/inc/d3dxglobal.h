@@ -88,7 +88,9 @@ namespace D3DX11Debug
 #define VBA(x,action) {           if (!(x))       { action; __BREAK_ON_FAIL; hr = E_FAIL;        goto lExit; } }
 #define VHA(x,action) { hr = (x); if (FAILED(hr)) { action; __BREAK_ON_FAIL;                     goto lExit; } }
 
+#ifndef V
 #define V(x)          { VA (x, 0) }
+#endif
 #define VN(x)         { VNA(x, 0) }
 #define VB(x)         { VBA(x, 0) }
 #define VH(x)         { VHA(x, 0) }
@@ -166,6 +168,8 @@ _declspec(selectany) unsigned int g_TimerRolloverCount = 0x80000000;
 
 #endif // _DEBUG && !_M_X64
 
+//namespace D3DX11Effects
+//{
 
 //////////////////////////////////////////////////////////////////////////
 // CEffectVector - A vector implementation
@@ -1310,6 +1314,7 @@ lExit:
     }
 };
 
+//} // !D3DX11Effects
 
 #if defined(extern_cplus) && defined(extern_cplusplus)
 	}

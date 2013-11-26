@@ -67,6 +67,9 @@ extern "C" {
 	extern "C++" {
 #endif
 
+//namespace D3DX11Effects
+	//{
+
 struct EFFECTSAPI D3DX11_STATE_BLOCK_MASK
 {
     uint8_t VS;
@@ -225,8 +228,8 @@ struct EFFECTSAPI D3DX11_EFFECT_TYPE_DESC
                                     // when laid out in a constant buffer
 };
 
-typedef interface ID3DX11EffectType ID3DX11EffectType;
-typedef interface ID3DX11EffectType *LPD3D11EFFECTTYPE;
+typedef interface EFFECTSAPI ID3DX11EffectType ID3DX11EffectType;
+typedef interface EFFECTSAPI ID3DX11EffectType *LPD3D11EFFECTTYPE;
 
 // {4250D721-D5E5-491F-B62B-587C43186285}
 DEFINE_GUID(IID_ID3DX11EffectType, 
@@ -235,7 +238,7 @@ DEFINE_GUID(IID_ID3DX11EffectType,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectType
 
-DECLARE_INTERFACE_(ID3DX11EffectType, IUnknown)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectType, IUnknown)
 {
     // IUnknown
 
@@ -280,8 +283,8 @@ struct EFFECTSAPI D3DX11_EFFECT_VARIABLE_DESC
                                     // D3DX11_EFFECT_VARIABLE_EXPLICIT_BIND_POINT;
 };
 
-typedef interface ID3DX11EffectVariable ID3DX11EffectVariable;
-typedef interface ID3DX11EffectVariable *LPD3D11EFFECTVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectVariable ID3DX11EffectVariable;
+typedef interface EFFECTSAPI ID3DX11EffectVariable *LPD3D11EFFECTVARIABLE;
 
 // {036A777D-B56E-4B25-B313-CC3DDAB71873}
 DEFINE_GUID(IID_ID3DX11EffectVariable, 
@@ -291,24 +294,24 @@ DEFINE_GUID(IID_ID3DX11EffectVariable,
 #define INTERFACE ID3DX11EffectVariable
 
 // Forward defines
-typedef interface ID3DX11EffectScalarVariable ID3DX11EffectScalarVariable;
-typedef interface ID3DX11EffectVectorVariable ID3DX11EffectVectorVariable;
-typedef interface ID3DX11EffectMatrixVariable ID3DX11EffectMatrixVariable;
-typedef interface ID3DX11EffectStringVariable ID3DX11EffectStringVariable;
-typedef interface ID3DX11EffectClassInstanceVariable ID3DX11EffectClassInstanceVariable;
-typedef interface ID3DX11EffectInterfaceVariable ID3DX11EffectInterfaceVariable;
-typedef interface ID3DX11EffectShaderResourceVariable ID3DX11EffectShaderResourceVariable;
-typedef interface ID3DX11EffectUnorderedAccessViewVariable ID3DX11EffectUnorderedAccessViewVariable;
-typedef interface ID3DX11EffectRenderTargetViewVariable ID3DX11EffectRenderTargetViewVariable;
-typedef interface ID3DX11EffectDepthStencilViewVariable ID3DX11EffectDepthStencilViewVariable;
-typedef interface ID3DX11EffectConstantBuffer ID3DX11EffectConstantBuffer;
-typedef interface ID3DX11EffectShaderVariable ID3DX11EffectShaderVariable;
-typedef interface ID3DX11EffectBlendVariable ID3DX11EffectBlendVariable;
-typedef interface ID3DX11EffectDepthStencilVariable ID3DX11EffectDepthStencilVariable;
-typedef interface ID3DX11EffectRasterizerVariable ID3DX11EffectRasterizerVariable;
-typedef interface ID3DX11EffectSamplerVariable ID3DX11EffectSamplerVariable;
+typedef interface EFFECTSAPI ID3DX11EffectScalarVariable ID3DX11EffectScalarVariable;
+typedef interface EFFECTSAPI ID3DX11EffectVectorVariable ID3DX11EffectVectorVariable;
+typedef interface EFFECTSAPI ID3DX11EffectMatrixVariable ID3DX11EffectMatrixVariable;
+typedef interface EFFECTSAPI ID3DX11EffectStringVariable ID3DX11EffectStringVariable;
+typedef interface EFFECTSAPI ID3DX11EffectClassInstanceVariable ID3DX11EffectClassInstanceVariable;
+typedef interface EFFECTSAPI ID3DX11EffectInterfaceVariable ID3DX11EffectInterfaceVariable;
+typedef interface EFFECTSAPI ID3DX11EffectShaderResourceVariable ID3DX11EffectShaderResourceVariable;
+typedef interface EFFECTSAPI ID3DX11EffectUnorderedAccessViewVariable ID3DX11EffectUnorderedAccessViewVariable;
+typedef interface EFFECTSAPI ID3DX11EffectRenderTargetViewVariable ID3DX11EffectRenderTargetViewVariable;
+typedef interface EFFECTSAPI ID3DX11EffectDepthStencilViewVariable ID3DX11EffectDepthStencilViewVariable;
+typedef interface EFFECTSAPI ID3DX11EffectConstantBuffer ID3DX11EffectConstantBuffer;
+typedef interface EFFECTSAPI ID3DX11EffectShaderVariable ID3DX11EffectShaderVariable;
+typedef interface EFFECTSAPI ID3DX11EffectBlendVariable ID3DX11EffectBlendVariable;
+typedef interface EFFECTSAPI ID3DX11EffectDepthStencilVariable ID3DX11EffectDepthStencilVariable;
+typedef interface EFFECTSAPI ID3DX11EffectRasterizerVariable ID3DX11EffectRasterizerVariable;
+typedef interface EFFECTSAPI ID3DX11EffectSamplerVariable ID3DX11EffectSamplerVariable;
 
-DECLARE_INTERFACE_(ID3DX11EffectVariable, IUnknown)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectVariable, IUnknown)
 {
     // IUnknown
 
@@ -353,8 +356,8 @@ DECLARE_INTERFACE_(ID3DX11EffectVariable, IUnknown)
 // ID3DX11EffectScalarVariable ////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectScalarVariable ID3DX11EffectScalarVariable;
-typedef interface ID3DX11EffectScalarVariable *LPD3D11EFFECTSCALARVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectScalarVariable ID3DX11EffectScalarVariable;
+typedef interface EFFECTSAPI ID3DX11EffectScalarVariable *LPD3D11EFFECTSCALARVARIABLE;
 
 // {921EF2E5-A65D-4E92-9FC6-4E9CC09A4ADE}
 DEFINE_GUID(IID_ID3DX11EffectScalarVariable, 
@@ -363,7 +366,7 @@ DEFINE_GUID(IID_ID3DX11EffectScalarVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectScalarVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectScalarVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectScalarVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -392,8 +395,8 @@ DECLARE_INTERFACE_(ID3DX11EffectScalarVariable, ID3DX11EffectVariable)
 // ID3DX11EffectVectorVariable ////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectVectorVariable ID3DX11EffectVectorVariable;
-typedef interface ID3DX11EffectVectorVariable *LPD3D11EFFECTVECTORVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectVectorVariable ID3DX11EffectVectorVariable;
+typedef interface EFFECTSAPI ID3DX11EffectVectorVariable *LPD3D11EFFECTVECTORVARIABLE;
 
 // {5E785D4A-D87B-48D8-B6E6-0F8CA7E7467A}
 DEFINE_GUID(IID_ID3DX11EffectVectorVariable, 
@@ -402,7 +405,7 @@ DEFINE_GUID(IID_ID3DX11EffectVectorVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectVectorVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectVectorVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectVectorVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -429,8 +432,8 @@ DECLARE_INTERFACE_(ID3DX11EffectVectorVariable, ID3DX11EffectVariable)
 // ID3DX11EffectMatrixVariable ////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectMatrixVariable ID3DX11EffectMatrixVariable;
-typedef interface ID3DX11EffectMatrixVariable *LPD3D11EFFECTMATRIXVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectMatrixVariable ID3DX11EffectMatrixVariable;
+typedef interface EFFECTSAPI ID3DX11EffectMatrixVariable *LPD3D11EFFECTMATRIXVARIABLE;
 
 // {E1096CF4-C027-419A-8D86-D29173DC803E}
 DEFINE_GUID(IID_ID3DX11EffectMatrixVariable, 
@@ -439,7 +442,7 @@ DEFINE_GUID(IID_ID3DX11EffectMatrixVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectMatrixVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectMatrixVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectMatrixVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -468,8 +471,8 @@ DECLARE_INTERFACE_(ID3DX11EffectMatrixVariable, ID3DX11EffectVariable)
 // ID3DX11EffectStringVariable ////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectStringVariable ID3DX11EffectStringVariable;
-typedef interface ID3DX11EffectStringVariable *LPD3D11EFFECTSTRINGVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectStringVariable ID3DX11EffectStringVariable;
+typedef interface EFFECTSAPI ID3DX11EffectStringVariable *LPD3D11EFFECTSTRINGVARIABLE;
 
 // {F355C818-01BE-4653-A7CC-60FFFEDDC76D}
 DEFINE_GUID(IID_ID3DX11EffectStringVariable, 
@@ -478,7 +481,7 @@ DEFINE_GUID(IID_ID3DX11EffectStringVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectStringVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectStringVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectStringVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -492,8 +495,8 @@ DECLARE_INTERFACE_(ID3DX11EffectStringVariable, ID3DX11EffectVariable)
 // ID3DX11EffectClassInstanceVariable ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectClassInstanceVariable ID3DX11EffectClassInstanceVariable;
-typedef interface ID3DX11EffectClassInstanceVariable *LPD3D11EFFECTCLASSINSTANCEVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectClassInstanceVariable ID3DX11EffectClassInstanceVariable;
+typedef interface EFFECTSAPI ID3DX11EffectClassInstanceVariable *LPD3D11EFFECTCLASSINSTANCEVARIABLE;
 
 // {926A8053-2A39-4DB4-9BDE-CF649ADEBDC1}
 DEFINE_GUID(IID_ID3DX11EffectClassInstanceVariable, 
@@ -502,7 +505,7 @@ DEFINE_GUID(IID_ID3DX11EffectClassInstanceVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectClassInstanceVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectClassInstanceVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectClassInstanceVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -515,8 +518,8 @@ DECLARE_INTERFACE_(ID3DX11EffectClassInstanceVariable, ID3DX11EffectVariable)
 // ID3DX11EffectInterfaceVariable ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectInterfaceVariable ID3DX11EffectInterfaceVariable;
-typedef interface ID3DX11EffectInterfaceVariable *LPD3D11EFFECTINTERFACEVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectInterfaceVariable ID3DX11EffectInterfaceVariable;
+typedef interface EFFECTSAPI ID3DX11EffectInterfaceVariable *LPD3D11EFFECTINTERFACEVARIABLE;
 
 // {516C8CD8-1C80-40A4-B19B-0688792F11A5}
 DEFINE_GUID(IID_ID3DX11EffectInterfaceVariable, 
@@ -525,7 +528,7 @@ DEFINE_GUID(IID_ID3DX11EffectInterfaceVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectInterfaceVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectInterfaceVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectInterfaceVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -539,8 +542,8 @@ DECLARE_INTERFACE_(ID3DX11EffectInterfaceVariable, ID3DX11EffectVariable)
 // ID3DX11EffectShaderResourceVariable ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectShaderResourceVariable ID3DX11EffectShaderResourceVariable;
-typedef interface ID3DX11EffectShaderResourceVariable *LPD3D11EFFECTSHADERRESOURCEVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectShaderResourceVariable ID3DX11EffectShaderResourceVariable;
+typedef interface EFFECTSAPI ID3DX11EffectShaderResourceVariable *LPD3D11EFFECTSHADERRESOURCEVARIABLE;
 
 // {350DB233-BBE0-485C-9BFE-C0026B844F89}
 DEFINE_GUID(IID_ID3DX11EffectShaderResourceVariable, 
@@ -549,7 +552,7 @@ DEFINE_GUID(IID_ID3DX11EffectShaderResourceVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectShaderResourceVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectShaderResourceVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectShaderResourceVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -566,8 +569,8 @@ DECLARE_INTERFACE_(ID3DX11EffectShaderResourceVariable, ID3DX11EffectVariable)
 // ID3DX11EffectUnorderedAccessViewVariable ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectUnorderedAccessViewVariable ID3DX11EffectUnorderedAccessViewVariable;
-typedef interface ID3DX11EffectUnorderedAccessViewVariable *LPD3D11EFFECTUNORDEREDACCESSVIEWVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectUnorderedAccessViewVariable ID3DX11EffectUnorderedAccessViewVariable;
+typedef interface EFFECTSAPI ID3DX11EffectUnorderedAccessViewVariable *LPD3D11EFFECTUNORDEREDACCESSVIEWVARIABLE;
 
 // {79B4AC8C-870A-47D2-B05A-8BD5CC3EE6C9}
 DEFINE_GUID(IID_ID3DX11EffectUnorderedAccessViewVariable, 
@@ -576,7 +579,7 @@ DEFINE_GUID(IID_ID3DX11EffectUnorderedAccessViewVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectUnorderedAccessViewVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectUnorderedAccessViewVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectUnorderedAccessViewVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -593,8 +596,8 @@ DECLARE_INTERFACE_(ID3DX11EffectUnorderedAccessViewVariable, ID3DX11EffectVariab
 // ID3DX11EffectRenderTargetViewVariable //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectRenderTargetViewVariable ID3DX11EffectRenderTargetViewVariable;
-typedef interface ID3DX11EffectRenderTargetViewVariable *LPD3D11EFFECTRENDERTARGETVIEWVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectRenderTargetViewVariable ID3DX11EffectRenderTargetViewVariable;
+typedef interface EFFECTSAPI ID3DX11EffectRenderTargetViewVariable *LPD3D11EFFECTRENDERTARGETVIEWVARIABLE;
 
 // {D5066909-F40C-43F8-9DB5-057C2A208552}
 DEFINE_GUID(IID_ID3DX11EffectRenderTargetViewVariable, 
@@ -603,7 +606,7 @@ DEFINE_GUID(IID_ID3DX11EffectRenderTargetViewVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectRenderTargetViewVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectRenderTargetViewVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectRenderTargetViewVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -620,8 +623,8 @@ DECLARE_INTERFACE_(ID3DX11EffectRenderTargetViewVariable, ID3DX11EffectVariable)
 // ID3DX11EffectDepthStencilViewVariable //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectDepthStencilViewVariable ID3DX11EffectDepthStencilViewVariable;
-typedef interface ID3DX11EffectDepthStencilViewVariable *LPD3D11EFFECTDEPTHSTENCILVIEWVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectDepthStencilViewVariable ID3DX11EffectDepthStencilViewVariable;
+typedef interface EFFECTSAPI ID3DX11EffectDepthStencilViewVariable *LPD3D11EFFECTDEPTHSTENCILVIEWVARIABLE;
 
 // {33C648AC-2E9E-4A2E-9CD6-DE31ACC5B347}
 DEFINE_GUID(IID_ID3DX11EffectDepthStencilViewVariable, 
@@ -630,7 +633,7 @@ DEFINE_GUID(IID_ID3DX11EffectDepthStencilViewVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectDepthStencilViewVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectDepthStencilViewVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectDepthStencilViewVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -647,8 +650,8 @@ DECLARE_INTERFACE_(ID3DX11EffectDepthStencilViewVariable, ID3DX11EffectVariable)
 // ID3DX11EffectConstantBuffer ////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectConstantBuffer ID3DX11EffectConstantBuffer;
-typedef interface ID3DX11EffectConstantBuffer *LPD3D11EFFECTCONSTANTBUFFER;
+typedef interface EFFECTSAPI ID3DX11EffectConstantBuffer ID3DX11EffectConstantBuffer;
+typedef interface EFFECTSAPI ID3DX11EffectConstantBuffer *LPD3D11EFFECTCONSTANTBUFFER;
 
 // {2CB6C733-82D2-4000-B3DA-6219D9A99BF2}
 DEFINE_GUID(IID_ID3DX11EffectConstantBuffer, 
@@ -657,7 +660,7 @@ DEFINE_GUID(IID_ID3DX11EffectConstantBuffer,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectConstantBuffer
 
-DECLARE_INTERFACE_(ID3DX11EffectConstantBuffer, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectConstantBuffer, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -704,8 +707,8 @@ struct EFFECTSAPI D3DX11_EFFECT_SHADER_DESC
 };
 
 
-typedef interface ID3DX11EffectShaderVariable ID3DX11EffectShaderVariable;
-typedef interface ID3DX11EffectShaderVariable *LPD3D11EFFECTSHADERVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectShaderVariable ID3DX11EffectShaderVariable;
+typedef interface EFFECTSAPI ID3DX11EffectShaderVariable *LPD3D11EFFECTSHADERVARIABLE;
 
 // {7508B344-020A-4EC7-9118-62CDD36C88D7}
 DEFINE_GUID(IID_ID3DX11EffectShaderVariable, 
@@ -714,7 +717,7 @@ DEFINE_GUID(IID_ID3DX11EffectShaderVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectShaderVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectShaderVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectShaderVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -738,8 +741,8 @@ DECLARE_INTERFACE_(ID3DX11EffectShaderVariable, ID3DX11EffectVariable)
 // ID3DX11EffectBlendVariable /////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectBlendVariable ID3DX11EffectBlendVariable;
-typedef interface ID3DX11EffectBlendVariable *LPD3D11EFFECTBLENDVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectBlendVariable ID3DX11EffectBlendVariable;
+typedef interface EFFECTSAPI ID3DX11EffectBlendVariable *LPD3D11EFFECTBLENDVARIABLE;
 
 // {D664F4D7-3B81-4805-B277-C1DF58C39F53}
 DEFINE_GUID(IID_ID3DX11EffectBlendVariable, 
@@ -748,7 +751,7 @@ DEFINE_GUID(IID_ID3DX11EffectBlendVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectBlendVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectBlendVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectBlendVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -764,8 +767,8 @@ DECLARE_INTERFACE_(ID3DX11EffectBlendVariable, ID3DX11EffectVariable)
 // ID3DX11EffectDepthStencilVariable //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectDepthStencilVariable ID3DX11EffectDepthStencilVariable;
-typedef interface ID3DX11EffectDepthStencilVariable *LPD3D11EFFECTDEPTHSTENCILVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectDepthStencilVariable ID3DX11EffectDepthStencilVariable;
+typedef interface EFFECTSAPI ID3DX11EffectDepthStencilVariable *LPD3D11EFFECTDEPTHSTENCILVARIABLE;
 
 // {69B5751B-61A5-48E5-BD41-D93988111563}
 DEFINE_GUID(IID_ID3DX11EffectDepthStencilVariable, 
@@ -774,7 +777,7 @@ DEFINE_GUID(IID_ID3DX11EffectDepthStencilVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectDepthStencilVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectDepthStencilVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectDepthStencilVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -790,8 +793,8 @@ DECLARE_INTERFACE_(ID3DX11EffectDepthStencilVariable, ID3DX11EffectVariable)
 // ID3DX11EffectRasterizerVariable ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectRasterizerVariable ID3DX11EffectRasterizerVariable;
-typedef interface ID3DX11EffectRasterizerVariable *LPD3D11EFFECTRASTERIZERVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectRasterizerVariable ID3DX11EffectRasterizerVariable;
+typedef interface EFFECTSAPI ID3DX11EffectRasterizerVariable *LPD3D11EFFECTRASTERIZERVARIABLE;
 
 // {53A262F6-5F74-4151-A132-E3DD19A62C9D}
 DEFINE_GUID(IID_ID3DX11EffectRasterizerVariable, 
@@ -800,7 +803,7 @@ DEFINE_GUID(IID_ID3DX11EffectRasterizerVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectRasterizerVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectRasterizerVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectRasterizerVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -816,8 +819,8 @@ DECLARE_INTERFACE_(ID3DX11EffectRasterizerVariable, ID3DX11EffectVariable)
 // ID3DX11EffectSamplerVariable ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-typedef interface ID3DX11EffectSamplerVariable ID3DX11EffectSamplerVariable;
-typedef interface ID3DX11EffectSamplerVariable *LPD3D11EFFECTSAMPLERVARIABLE;
+typedef interface EFFECTSAPI ID3DX11EffectSamplerVariable ID3DX11EffectSamplerVariable;
+typedef interface EFFECTSAPI ID3DX11EffectSamplerVariable *LPD3D11EFFECTSAMPLERVARIABLE;
 
 // {C6402E55-1095-4D95-8931-F92660513DD9}
 DEFINE_GUID(IID_ID3DX11EffectSamplerVariable, 
@@ -826,7 +829,7 @@ DEFINE_GUID(IID_ID3DX11EffectSamplerVariable,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectSamplerVariable
 
-DECLARE_INTERFACE_(ID3DX11EffectSamplerVariable, ID3DX11EffectVariable)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectSamplerVariable, ID3DX11EffectVariable)
 {
     // IUnknown
     // ID3DX11EffectVariable
@@ -885,8 +888,8 @@ struct EFFECTSAPI D3DX11_PASS_SHADER_DESC
                                                     // or 0 if not applicable
 };
 
-typedef interface ID3DX11EffectPass ID3DX11EffectPass;
-typedef interface ID3DX11EffectPass *LPD3D11EFFECTPASS;
+typedef interface EFFECTSAPI ID3DX11EffectPass ID3DX11EffectPass;
+typedef interface EFFECTSAPI ID3DX11EffectPass *LPD3D11EFFECTPASS;
 
 // {3437CEC4-4AC1-4D87-8916-F4BD5A41380C}
 DEFINE_GUID(IID_ID3DX11EffectPass, 
@@ -895,7 +898,7 @@ DEFINE_GUID(IID_ID3DX11EffectPass,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectPass
 
-DECLARE_INTERFACE_(ID3DX11EffectPass, IUnknown)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectPass, IUnknown)
 {
     // IUnknown
 
@@ -935,8 +938,8 @@ struct EFFECTSAPI D3DX11_TECHNIQUE_DESC
     uint32_t    Annotations;        // Number of annotations on this technique
 };
 
-typedef interface ID3DX11EffectTechnique ID3DX11EffectTechnique;
-typedef interface ID3DX11EffectTechnique *LPD3D11EFFECTTECHNIQUE;
+typedef interface EFFECTSAPI ID3DX11EffectTechnique ID3DX11EffectTechnique;
+typedef interface EFFECTSAPI ID3DX11EffectTechnique *LPD3D11EFFECTTECHNIQUE;
 
 // {51198831-1F1D-4F47-BD76-41CB0835B1DE}
 DEFINE_GUID(IID_ID3DX11EffectTechnique, 
@@ -945,7 +948,7 @@ DEFINE_GUID(IID_ID3DX11EffectTechnique,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectTechnique
 
-DECLARE_INTERFACE_(ID3DX11EffectTechnique, IUnknown)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectTechnique, IUnknown)
 {
     // IUnknown
 
@@ -979,8 +982,8 @@ struct EFFECTSAPI D3DX11_GROUP_DESC
     uint32_t    Annotations;        // Number of annotations on this group
 };
 
-typedef interface ID3DX11EffectGroup ID3DX11EffectGroup;
-typedef interface ID3DX11EffectGroup *LPD3D11EFFECTGROUP;
+typedef interface EFFECTSAPI ID3DX11EffectGroup ID3DX11EffectGroup;
+typedef interface EFFECTSAPI ID3DX11EffectGroup *LPD3D11EFFECTGROUP;
 
 // {03074acf-97de-485f-b201-cb775264afd6}
 DEFINE_GUID(IID_ID3DX11EffectGroup, 
@@ -989,7 +992,7 @@ DEFINE_GUID(IID_ID3DX11EffectGroup,
 #undef INTERFACE
 #define INTERFACE ID3DX11EffectGroup
 
-DECLARE_INTERFACE_(ID3DX11EffectGroup, IUnknown) 
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11EffectGroup, IUnknown)
 {
     // IUnknown
 
@@ -1023,8 +1026,8 @@ struct EFFECTSAPI D3DX11_EFFECT_DESC
     uint32_t    Groups;                 // Number of groups in this effect
 };
 
-typedef interface ID3DX11Effect ID3DX11Effect;
-typedef interface ID3DX11Effect *LPD3D11EFFECT;
+typedef interface EFFECTSAPI ID3DX11Effect ID3DX11Effect;
+typedef interface EFFECTSAPI ID3DX11Effect *LPD3D11EFFECT;
 
 // {FA61CA24-E4BA-4262-9DB8-B132E8CAE319}
 DEFINE_GUID(IID_ID3DX11Effect, 
@@ -1033,7 +1036,7 @@ DEFINE_GUID(IID_ID3DX11Effect,
 #undef INTERFACE
 #define INTERFACE ID3DX11Effect
 
-DECLARE_INTERFACE_(ID3DX11Effect, IUnknown)
+DECLARE_INTERFACE_(EFFECTSAPI ID3DX11Effect, IUnknown)
 {
     // IUnknown
 
@@ -1167,7 +1170,7 @@ EFFECTSAPI HRESULT WINAPI D3DX11CreateEffectFromFile( _In_z_ LPCWSTR pFileName,
 //
 //----------------------------------------------------------------------------
 
-EFFECTSAPI HRESULT D3DX11CompileEffectFromMemory( _In_reads_bytes_(DataLength) LPCVOID pData,
+EFFECTSAPI HRESULT WINAPI D3DX11CompileEffectFromMemory( _In_reads_bytes_(DataLength) LPCVOID pData,
                                        _In_ SIZE_T DataLength, 
                                        _In_opt_z_ LPCSTR srcName,
                                        _In_opt_ const D3D_SHADER_MACRO *pDefines,
@@ -1207,7 +1210,7 @@ EFFECTSAPI HRESULT D3DX11CompileEffectFromMemory( _In_reads_bytes_(DataLength) L
 //
 //----------------------------------------------------------------------------
 
-EFFECTSAPI HRESULT D3DX11CompileEffectFromFile( _In_z_ LPCWSTR pFileName,
+EFFECTSAPI HRESULT WINAPI D3DX11CompileEffectFromFile( _In_z_ LPCWSTR pFileName,
                                      _In_opt_ const D3D_SHADER_MACRO *pDefines,
                                      _In_opt_ ID3DInclude *pInclude,
                                      _In_ UINT HLSLFlags,
@@ -1221,6 +1224,7 @@ EFFECTSAPI HRESULT D3DX11CompileEffectFromFile( _In_z_ LPCWSTR pFileName,
 }
 #endif //___cplusplus*/
 
+//}
 
 #if defined(extern_cplus) && defined(extern_cplusplus)
 	}
