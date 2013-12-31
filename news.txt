@@ -1,0 +1,11 @@
+Effect11 VERSION 11.0.8
+=======================================================
+
+30-12-2012 code and api exports cleanup / removed struct´s and class´s api exports to only selected functions api exports
+
+
+	
+
+
+
+

@@ -68,8 +68,8 @@
 #pragma comment( lib, "dxgi.lib" )
 #pragma comment( lib, "dxguid.lib" )
 #pragma comment( lib, "d3dcompiler.lib" )
-// #pragma comment( lib, "ole32.lib" ) // included with additional include directories 
-// #pragma comment( lib, "uuid.lib" ) // included with additional include directories 
+// #pragma comment( lib, "ole32.lib" ) // included with additional include directories
+// #pragma comment( lib, "uuid.lib" ) // included with additional include directories
 #pragma comment( lib, "usp10.lib" )
 //#pragma comment( lib, "ddraw.lib" )
 #pragma comment( lib, "d2d1.lib" )
@@ -103,7 +103,6 @@
 #pragma warning ("EFFECTS11LIB_IMPORT import librarys aren't defined")
 #endif
 #endif
-
 
 #pragma warning(disable : 4067 4102 4127 4201 4505 4603 4616 4706 6326)
 
@@ -163,7 +162,6 @@
 #include <wincodec.h>
 #endif
 
-
 //#include <ddraw.h>
 //#include <dwrite.h>
 //#include <dxtmpl.h>
@@ -201,8 +199,6 @@
 #include <omp.h>
 #endif
 
-
-
 // CRT's memory leak detection
 #if defined(DEBUG) || defined(_DEBUG)
 #include <crtdbg.h>
@@ -226,7 +222,6 @@
 #ifndef UNUSED (-1)
 #define UNUSED (-1)
 #endif
-
 
 #if defined(_MSC_VER) && (_MSC_VER<1610) && !defined(_In_reads_)
 #define _Analysis_assume_(exp) __analysis_assume(exp)
@@ -260,7 +255,6 @@
 #define _Use_decl_annotations_
 #endif
 
-
 #ifndef offsetof_fx
 #define offsetof_fx( a, b ) (uint32_t)offsetof( a, b )
 #endif
@@ -286,4 +280,3 @@
 #include "EffectStates11.h"
 #include "SOParser.h"
 #endif
-

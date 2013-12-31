@@ -15,25 +15,20 @@
 
 #pragma once
 
-#ifdef extern_cplus
-extern "C" {
+#ifdef __cplusplus
+EXTERN_C_BEGIN
 #endif
 
-#ifdef extern_cplusplus
-	extern "C++" {
-#endif
-
-namespace D3DX11Effects
-{
+NAMESPACE_D3DX11Effects
 
 //////////////////////////////////////////////////////////////////////////
 // Effect HLSL states and late resolve lists
 //////////////////////////////////////////////////////////////////////////
 
-struct EFFECTSAPI RValue
+struct RValue
 {
-    const char  *m_pName;
-    uint32_t    m_Value;
+	const char  *m_pName;
+	uint32_t    m_Value;
 };
 
 #define RVALUE_END()    { nullptr, 0U }
@@ -41,18 +36,18 @@ struct EFFECTSAPI RValue
 
 enum ELhsType;
 
-struct EFFECTSAPI LValue
+struct LValue
 {
-    const char      *m_pName;           // name of the LHS side of expression
-    EBlockType      m_BlockType;        // type of block it can appear in
-    D3D_SHADER_VARIABLE_TYPE m_Type;    // data type allows
-    uint32_t        m_Cols;             // number of [m_Type]'s required (1 for a scalar, 4 for a vector)
-    uint32_t        m_Indices;          // max index allowable (if LHS is an array; otherwise this is 1)
-    bool            m_VectorScalar;     // can be both vector and scalar (setting as a scalar sets all m_Indices values simultaneously)
-    const RValue    *m_pRValue;         // pointer to table of allowable RHS "late resolve" values
-    ELhsType        m_LhsType;          // ELHS_* enum value that corresponds to this entry
-    uint32_t        m_Offset;           // offset into the given block type where this value should be written
-    uint32_t        m_Stride;           // for vectors, byte stride between two consecutive values. if 0, m_Type's size is used
+	const char      *m_pName;           // name of the LHS side of expression
+	EBlockType      m_BlockType;        // type of block it can appear in
+	D3D_SHADER_VARIABLE_TYPE m_Type;    // data type allows
+	uint32_t        m_Cols;             // number of [m_Type]'s required (1 for a scalar, 4 for a vector)
+	uint32_t        m_Indices;          // max index allowable (if LHS is an array; otherwise this is 1)
+	bool            m_VectorScalar;     // can be both vector and scalar (setting as a scalar sets all m_Indices values simultaneously)
+	const RValue    *m_pRValue;         // pointer to table of allowable RHS "late resolve" values
+	ELhsType        m_LhsType;          // ELHS_* enum value that corresponds to this entry
+	uint32_t        m_Offset;           // offset into the given block type where this value should be written
+	uint32_t        m_Stride;           // for vectors, byte stride between two consecutive values. if 0, m_Type's size is used
 };
 
 #define LVALUE_END()    { nullptr, D3D_SVT_UINT, 0, 0, 0, nullptr }
@@ -60,13 +55,8 @@ struct EFFECTSAPI LValue
 extern const LValue g_lvGeneral[];
 extern const uint32_t g_lvGeneralCount;
 
-} // end namespace D3DX11Effects
+NAMESPACE_D3DX11Effects_END
 
-#if defined(extern_cplus) && defined(extern_cplusplus)
-	}
-	}
-#elif defined(extern_cplus) && !defined(extern_cplusplus)
-}
-#elif defined(extern_cplusplus) && !defined(extern_cplus)
-}
+#ifdef __cplusplus
+EXTERN_C_END
 #endif

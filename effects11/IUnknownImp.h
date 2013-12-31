@@ -18,12 +18,8 @@
 
 #pragma once
 
-#ifdef extern_cplus
-extern "C" {
-#endif
-
-#ifdef extern_cplusplus
-	extern "C++" {
+#ifdef __cplusplus
+EXTERN_C_BEGIN
 #endif
 
 #define IUNKNOWN_IMP(Class, Interface, BaseInterface) \
@@ -64,11 +60,6 @@ ULONG STDMETHODCALLTYPE Class##::Release() override \
     return 0; \
 }
 
-#if defined(extern_cplus) && defined(extern_cplusplus)
-	}
-	}
-#elif defined(extern_cplus) && !defined(extern_cplusplus)
-}
-#elif defined(extern_cplusplus) && !defined(extern_cplus)
-}
+#ifdef __cplusplus
+EXTERN_C_END
 #endif

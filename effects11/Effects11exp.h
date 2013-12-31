@@ -20,6 +20,64 @@
 #include <windows.h>
 #endif
 
+#define NAMESPACE_D3DX11Effects namespace D3DX11Effects {
+#define NAMESPACE_D3DX11Effects_END }
+
+#define NAMESPACE_D3DX11Core namespace D3DX11Core {
+#define NAMESPACE_D3DX11Core_END }
+
+#define NAMESPACE_D3DX11Debug namespace D3DX11Debug {
+#define NAMESPACE_D3DX11Debug_END }
+
+//#define extern_cplus
+
+// Defined for Templates functions export
+#define extern_cplusplus
+
+#ifndef EXTERN_C_BEGIN
+#ifdef __cplusplus
+#ifdef extern_cplus
+#define EXTERN_C_BEGIN extern "C" {
+#define EXTERN_C_END }
+#endif
+#ifdef extern_cplusplus
+#define EXTERN_C_BEGIN extern "C++" {
+#define EXTERN_C_END }
+#endif
+#else
+#define EXTERN_C_BEGIN
+#define EXTERN_C_END
+#endif
+#endif
+
+#ifdef __cplusplus
+EXTERN_C_BEGIN
+#endif
+
+#ifdef __cplusplus
+EXTERN_C_END
+#endif
+
+#ifdef __cplusplus
+#if defined(extern_cplus)
+#define _EXTERN extern "C"
+#elif defined(extern_cplusplus)
+#define _EXTERN extern "C++"
+#endif
+#else
+#define _EXTERN extern
+#endif
+
+#ifdef __cplusplus
+#if defined(extern_cplus)
+#define EFFECTSEXTERN extern "C"
+#elif defined(extern_cplusplus)
+#define EFFECTSEXTERN extern "C++"
+#endif
+#else
+#define EFFECTSEXTERN extern
+#endif
+
 #if defined(_WINDOWS) || defined(_WIN32)
 /* If building or using DXUTlib as a DLL, define DXUTLIB_DLL.
 * This is not mandatory, but it offers a little performance increase.
@@ -45,7 +103,7 @@
 
 #if defined(LIB_STATIC) || defined(EFFECTS11LIB_STATIC)
 #ifndef EFFECTS11LIB_DLL
-#ifndef EFFECTS11LIB_STATIC 
+#ifndef EFFECTS11LIB_STATIC
 #define EFFECTS11LIB_STATIC 1
 #endif
 #endif
@@ -62,23 +120,6 @@
 #if !defined(EFFECTS11LIB_DLL) && !defined(EFFECTS11LIB_STATIC)
 #error ("!!!Your EFFECTS11 lib type static or dll aren't defined")
 #endif
-
-//#define extern_cplus
-
-// Defined for Templates functions export
-#define extern_cplusplus
-
-#ifdef extern_cplus
-#define _EXTERN_C_START extern "C" {
-#define _EXTERN_C_END  }
-#endif
-
-#ifdef extern_cplusplus
-#define _EXTERN_CPP_START extern "C++" {
-#define _EXTERN_CPP_END  }
-#endif
-
-#define _EXTERN extern
 
 #  ifdef EFFECTS11LIB_DLL
 #    if defined(WIN32) && (!defined(__BORLANDC__) || (__BORLANDC__ >= 0x500))
@@ -98,9 +139,5 @@
 #	define EFFECTSAPI
 #endif // _WINDOWS
 
-
-
 //#define DXSTDAPI                  EXTERN_C EFFECTSAPI HRESULT STDAPICALLTYPE
 //#define DXSTDAPI_(type)           EXTERN_C EFFECTSAPI type STDAPICALLTYPE
-
-
