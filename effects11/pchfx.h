@@ -38,14 +38,17 @@
 #endif
 
 // If app hasn't choosen, set to work with Windows Vista and beyond
+#if _WIN32_WINNT < _WIN32_WINNT_WIN8
+#undef _WIN32_WINNT
+#endif
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT   _WIN32_WINNT_WIN8
+#endif
 #ifndef WINVER
-#define WINVER         0x0602
+#define WINVER         _WIN32_WINNT
 #endif
 #ifndef _WIN32_WINDOWS
-#define _WIN32_WINDOWS 0x0602
-#endif
-#if _WIN32_WINNT < 0x0602
-#define _WIN32_WINNT   0x0602
+#define _WIN32_WINDOWS _WIN32_WINNT
 #endif
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN8) && !defined(DXGI_1_2_FORMATS)
@@ -54,12 +57,12 @@
 
 #include "Effects11exp.h"
 
-#if defined(_MSC_VER) && defined(EFFECTS11LIB_EXPORT) || defined(_LIB) || defined(EFFECTS11LIB_IMPORT) || defined(_DLL) && !defined(DXUT_AUTOLIB)
+#if defined(_MSC_VER) && defined(EFFECTS11LIB_EXPORTS) || defined(_LIB) || defined(EFFECTS11LIB_IMPORTS) || defined(_DLL)
 #define EFFECTS11_AUTOLIB 0
 #endif
 
 // #define EFFECTS11_AUTOLIB to automatically include the libs needed for EFFECTS11
-#ifndef DXUT_AUTOLIB
+#if !defined(DXUT_AUTOLIB) && !defined(DXTK_AUTOLIB) && !defined(DXTEX_AUTOLIB)
 #ifdef EFFECTS11_AUTOLIB
 #pragma comment( lib, "d3d11.lib" )
 // #pragma comment( lib, "d3d10_1.lib" )
@@ -72,7 +75,9 @@
 // #pragma comment( lib, "uuid.lib" ) // included with additional include directories
 #pragma comment( lib, "usp10.lib" )
 //#pragma comment( lib, "ddraw.lib" )
+#if (_WIN32_WINNT >= _WIN32_WINNT_WIN8) || defined(_WIN7_PLATFORM_UPDATE) && !defined(_XBOX_ONE)
 #pragma comment( lib, "d2d1.lib" )
+#endif
 //#pragma comment( lib, "dwrite.lib" )
 //#pragma comment( lib, "dsound.lib" )
 #ifdef _DEBUG
@@ -86,7 +91,7 @@
 #endif
 #endif
 
-#ifdef EFFECTS11LIB_IMPORT
+#ifdef EFFECTS11LIB_IMPORTS
 #ifdef EFFECTS11LIB_DLL
 #ifdef _DEBUG
 #pragma comment( lib, "Effects11_d.lib" )
@@ -100,7 +105,7 @@
 #pragma comment( lib, "Effects11s.lib" )
 #endif
 #else
-#pragma warning ("EFFECTS11LIB_IMPORT import librarys aren't defined")
+#pragma warning ("EFFECTS11LIB_IMPORTS import librarys aren't defined")
 #endif
 #endif
 
@@ -134,18 +139,34 @@
 //#include <dsound.h>
 #include <ks.h>
 #include <ole2.h>
+#include <objbase.h>
+#include <mmreg.h>
 
-//#define D3DX11_EFFECTS_VERSION 1108
+#ifndef D3DX11_EFFECTS_VERSION
+#define D3DX11_EFFECTS_VERSION 1108
+#endif
 
 // Direct3D11 includes
+#if defined(_XBOX_ONE) && defined(_TITLE) && MONOLITHIC
+#include <d3d11_x.h>
+#define DCOMMON_H_INCLUDED
+#define NO_D3D11_DEBUG_NAME
+#else
+
 //#include <d3dcommon.h>
+#if (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE) && !defined(_XBOX_ONE)
 #include <dxgi1_3.h>
 #include <d3d11_2.h>
-#include <d3d11shader.h>
-//#include <d3d10_1.h>
-#include <d3dcompiler.h>
 #include <d2d1_2.h>
+#elif (_WIN32_WINNT >= _WIN32_WINNT_WIN8) || defined(_WIN7_PLATFORM_UPDATE) && !defined(_XBOX_ONE)
+#include <dxgi1_2.h>
+#include <d3d11_1.h>
+#include <d2d1_1.h>
+#endif
+#include <d3d11shader.h>
+#include <d3dcompiler.h>
 #include <d3dcsx.h>
+#endif
 
 #if defined(DEBUG) || defined(_DEBUG)
 #include <dxgidebug.h>
@@ -216,12 +237,34 @@
 // HRESULT translation for Direct3D and other APIs
 //#include "dxerr.h"
 
-//#undef min // use __min instead
-//#undef max // use __max instead
-
-#ifndef UNUSED (-1)
-#define UNUSED (-1)
+#ifdef min
+#undef min // use __min instead
 #endif
+#ifdef max
+#undef max // use __max instead
+#endif
+
+/*
+#ifndef max
+#define max __max
+#endif
+
+#ifndef min
+#define min __min
+#endif*/
+
+#if !(UNUSED == -1) && !defined(UNUSED)
+#define UNUSED -1
+#endif
+
+/*
+NAMESPACE_DirectX
+#if (DIRECTXMATH_VERSION < 305) && !defined(XM_CALLCONV)
+#define XM_CALLCONV __fastcall
+typedef const XMVECTOR& HXMVECTOR;
+typedef const XMMATRIX& FXMMATRIX;
+#endif
+NAMESPACE_DirectX_END*/
 
 #if defined(_MSC_VER) && (_MSC_VER<1610) && !defined(_In_reads_)
 #define _Analysis_assume_(exp) __analysis_assume(exp)
@@ -262,6 +305,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "Effects11exp.h"
+#include "typesexport.h"
 #include "PlatformHelpers.h"
 
 // Effects11

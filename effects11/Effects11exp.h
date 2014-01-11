@@ -20,6 +20,9 @@
 #include <windows.h>
 #endif
 
+#define NAMESPACE_DirectX namespace DirectX {
+#define NAMESPACE_DirectX_END }
+
 #define NAMESPACE_D3DX11Effects namespace D3DX11Effects {
 #define NAMESPACE_D3DX11Effects_END }
 
@@ -83,20 +86,20 @@ EXTERN_C_END
 * This is not mandatory, but it offers a little performance increase.
 */
 
-#if defined(LIB_EXPORT) || defined(EFFECTS11LIB_EXPORT)
-#ifndef EFFECTS11LIB_IMPORT
-#ifndef EFFECTS11LIB_EXPORT
-#define EFFECTS11LIB_EXPORT 1
+#if defined(LIB_EXPORTS) || defined(EFFECTS11LIB_EXPORTS)
+#ifndef EFFECTS11LIB_IMPORTS
+#ifndef EFFECTS11LIB_EXPORTS
+#define EFFECTS11LIB_EXPORTS 1
 #endif
 #endif
 #endif
 
-#if defined(LIB_IMPORT) || defined(EFFECTS11LIB_IMPORT)
-#if defined(EFFECTS11LIB_EXPORT)
+#if defined(LIB_IMPORTS) || defined(EFFECTS11LIB_IMPORTS)
+#if defined(EFFECTS11LIB_EXPORTS)
 #error ("!!!You are bulding EFFECTS11 export and import simultaniously")
 #else
-#ifndef EFFECTS11LIB_IMPORT
-#define EFFECTS11LIB_IMPORT 1
+#ifndef EFFECTS11LIB_IMPORTS
+#define EFFECTS11LIB_IMPORTS 1
 #endif
 #endif
 #endif
@@ -123,9 +126,9 @@ EXTERN_C_END
 
 #  ifdef EFFECTS11LIB_DLL
 #    if defined(WIN32) && (!defined(__BORLANDC__) || (__BORLANDC__ >= 0x500))
-#      if defined(EFFECTS11LIB_EXPORT) && !defined(EFFECTS11LIB_STATIC)
+#      if defined(EFFECTS11LIB_EXPORTS) && !defined(EFFECTS11LIB_STATIC)
 #        define EFFECTSAPI __declspec(dllexport)
-#      elif defined(EFFECTS11LIB_IMPORT) && (defined(_DLL) || defined(_WINDLL) || defined(_USRDLL)) && !defined(EFFECTS11LIB_STATIC)
+#      elif defined(EFFECTS11LIB_IMPORTS) && (defined(_DLL) || defined(_WINDLL) || defined(_USRDLL)) && !defined(EFFECTS11LIB_STATIC)
 #        define EFFECTSAPI __declspec(dllimport)
 #      else // EFFECTS11LIB_STATIC  _LIB
 #        define EFFECTSAPI

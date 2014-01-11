@@ -27,7 +27,7 @@ NAMESPACE_D3DX11Effects
 
 EFFECTSEXTERN EFFECTSAPI SUnorderedAccessView g_NullUnorderedAccessView;
 
-SBaseBlock::SBaseBlock()
+EFFECTSAPI SBaseBlock::SBaseBlock()
 : BlockType(EBT_Invalid)
 , IsUserManaged(false)
 , AssignmentCount(0)
@@ -35,7 +35,7 @@ SBaseBlock::SBaseBlock()
 {
 }
 
-SPassBlock::SPassBlock()
+EFFECTSAPI SPassBlock::SPassBlock()
 {
 	pName = nullptr;
 	AnnotationCount = 0;
@@ -45,7 +45,7 @@ SPassBlock::SPassBlock()
 	ZeroMemory(&BackingStore, sizeof(BackingStore));
 }
 
-STechnique::STechnique()
+EFFECTSAPI STechnique::STechnique()
 : pName(nullptr)
 , PassCount(0)
 , pPasses(nullptr)
@@ -56,7 +56,7 @@ STechnique::STechnique()
 {
 }
 
-SGroup::SGroup()
+EFFECTSAPI SGroup::SGroup()
 : pName(nullptr)
 , TechniqueCount(0)
 , pTechniques(nullptr)
@@ -67,7 +67,7 @@ SGroup::SGroup()
 {
 }
 
-SDepthStencilBlock::SDepthStencilBlock()
+EFFECTSAPI SDepthStencilBlock::SDepthStencilBlock()
 {
 	pDSObject = nullptr;
 	ZeroMemory(&BackingStore, sizeof(BackingStore));
@@ -89,7 +89,7 @@ SDepthStencilBlock::SDepthStencilBlock()
 	BackingStore.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
 }
 
-SBlendBlock::SBlendBlock()
+EFFECTSAPI SBlendBlock::SBlendBlock()
 {
 	pBlendObject = nullptr;
 	ZeroMemory(&BackingStore, sizeof(BackingStore));
@@ -109,7 +109,7 @@ SBlendBlock::SBlendBlock()
 	}
 }
 
-SRasterizerBlock::SRasterizerBlock()
+EFFECTSAPI SRasterizerBlock::SRasterizerBlock()
 {
 	pRasterizerObject = nullptr;
 	ZeroMemory(&BackingStore, sizeof(BackingStore));
@@ -127,7 +127,7 @@ SRasterizerBlock::SRasterizerBlock()
 	BackingStore.DepthClipEnable = true;
 }
 
-SSamplerBlock::SSamplerBlock()
+EFFECTSAPI SSamplerBlock::SSamplerBlock()
 {
 	pD3DObject = nullptr;
 	ZeroMemory(&BackingStore, sizeof(BackingStore));
@@ -147,7 +147,7 @@ SSamplerBlock::SSamplerBlock()
 	BackingStore.SamplerDesc.MaxLOD = FLT_MAX;
 }
 
-SShaderBlock::SShaderBlock(SD3DShaderVTable *pVirtualTable)
+EFFECTSAPI SShaderBlock::SShaderBlock(SD3DShaderVTable *pVirtualTable)
 {
 	IsValid = true;
 
@@ -621,17 +621,17 @@ lExit:
 	return hr;
 }
 
-SString::SString()
+EFFECTSAPI SString::SString()
 {
 	pString = nullptr;
 }
 
-SRenderTargetView::SRenderTargetView()
+EFFECTSAPI SRenderTargetView::SRenderTargetView()
 {
 	pRenderTargetView = nullptr;
 }
 
-SDepthStencilView::SDepthStencilView()
+EFFECTSAPI SDepthStencilView::SDepthStencilView()
 {
 	pDepthStencilView = nullptr;
 }
@@ -711,7 +711,7 @@ EFFECTSAPI void * GetBlockByIndex(EVarType VarType, EObjectType ObjectType, void
 // CEffect
 //--------------------------------------------------------------------------------------
 
-CEffect::CEffect(uint32_t Flags)
+EFFECTSAPI CEffect::CEffect(uint32_t Flags)
 {
 	m_RefCount = 1;
 
@@ -777,7 +777,7 @@ EFFECTSAPI void CEffect::ReleaseShaderRefection()
 	}
 }
 
-CEffect::~CEffect()
+EFFECTSAPI CEffect::~CEffect()
 {
 	ID3D11InfoQueue *pInfoQueue = nullptr;
 

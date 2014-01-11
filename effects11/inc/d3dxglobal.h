@@ -117,24 +117,24 @@ NAMESPACE_D3DX11Core
 //////////////////////////////////////////////////////////////////////////
 // CMemoryStream - A class to simplify reading binary data
 //////////////////////////////////////////////////////////////////////////
-class CMemoryStream
+class EFFECTSAPI CMemoryStream
 {
 	uint8_t *m_pData;
 	size_t  m_cbData;
 	size_t  m_readPtr;
 
 public:
-	EFFECTSAPI HRESULT SetData(_In_reads_bytes_(size) const void *pData, _In_ size_t size);
+	HRESULT SetData(_In_reads_bytes_(size) const void *pData, _In_ size_t size);
 
-	EFFECTSAPI HRESULT Read(_Out_ uint32_t *pUint);
-	EFFECTSAPI HRESULT Read(_Outptr_result_buffer_(size) void **ppData, _In_ size_t size);
-	EFFECTSAPI HRESULT Read(_Outptr_ LPCSTR *ppString);
+	HRESULT Read(_Out_ uint32_t *pUint);
+	HRESULT Read(_Outptr_result_buffer_(size) void **ppData, _In_ size_t size);
+	HRESULT Read(_Outptr_ LPCSTR *ppString);
 
-	EFFECTSAPI HRESULT ReadAtOffset(_In_ size_t offset, _In_ size_t size, _Outptr_result_buffer_(size) void **ppData);
-	EFFECTSAPI HRESULT ReadAtOffset(_In_ size_t offset, _Outptr_result_z_ LPCSTR *ppString);
+	HRESULT ReadAtOffset(_In_ size_t offset, _In_ size_t size, _Outptr_result_buffer_(size) void **ppData);
+	HRESULT ReadAtOffset(_In_ size_t offset, _Outptr_result_z_ LPCSTR *ppString);
 
-	EFFECTSAPI size_t  GetPosition();
-	EFFECTSAPI HRESULT Seek(_In_ size_t offset);
+	size_t  GetPosition();
+	HRESULT Seek(_In_ size_t offset);
 
 	CMemoryStream();
 	~CMemoryStream();
@@ -159,7 +159,7 @@ NAMESPACE_D3DX11Debug_END
 // CEffectVector - A vector implementation
 //////////////////////////////////////////////////////////////////////////
 
-template<class T> class CEffectVector
+template<class T> class EFFECTSAPI CEffectVector
 {
 protected:
 #if _DEBUG
@@ -170,12 +170,12 @@ protected:
 	uint32_t    m_MaxSize;
 	uint32_t    m_CurSize;
 
-	EFFECTSAPI HRESULT Grow()
+	HRESULT Grow()
 	{
 		return Reserve(m_CurSize + 1);
 	}
 
-	EFFECTSAPI HRESULT Reserve(_In_ uint32_t DesiredSize)
+	HRESULT Reserve(_In_ uint32_t DesiredSize)
 	{
 		if (DesiredSize > m_MaxSize)
 		{
@@ -230,7 +230,7 @@ public:
 
 	// cleanly swaps two vectors -- useful for when you want
 	// to reallocate a vector and copy data over, then swap them back
-	EFFECTSAPI void SwapVector(_Out_ CEffectVector<T> &vOther)
+	void SwapVector(_Out_ CEffectVector<T> &vOther)
 	{
 		uint8_t tempData[sizeof(*this)];
 
@@ -239,7 +239,7 @@ public:
 		memcpy(&vOther, tempData, sizeof(*this));
 	}
 
-	EFFECTSAPI HRESULT CopyFrom(_In_ const CEffectVector<T> &vOther)
+	HRESULT CopyFrom(_In_ const CEffectVector<T> &vOther)
 	{
 		HRESULT hr = S_OK;
 		Clear();
@@ -263,7 +263,7 @@ public:
 		return hr;
 	}
 
-	EFFECTSAPI void Clear()
+	void Clear()
 	{
 		Empty();
 		SAFE_DELETE_ARRAY(m_pData);
@@ -273,7 +273,7 @@ public:
 #endif // _DEBUG
 	}
 
-	EFFECTSAPI void ClearWithoutDestructor()
+	void ClearWithoutDestructor()
 	{
 		m_CurSize = 0;
 		m_hLastError = S_OK;
@@ -285,7 +285,7 @@ public:
 #endif // _DEBUG
 	}
 
-	EFFECTSAPI void Empty()
+	void Empty()
 	{
 		// manually invoke destructor on all elements
 		for (size_t i = 0; i < m_CurSize; ++i)
@@ -325,7 +325,7 @@ public:
 		return pData;
 	}
 
-	EFFECTSAPI HRESULT Add(_In_ const T& var)
+	HRESULT Add(_In_ const T& var)
 	{
 		if (FAILED(Grow()))
 			return m_hLastError;
@@ -336,7 +336,7 @@ public:
 		return S_OK;
 	}
 
-	EFFECTSAPI HRESULT AddRange(_In_reads_(count) const T *pVar, _In_ uint32_t count)
+	HRESULT AddRange(_In_reads_(count) const T *pVar, _In_ uint32_t count)
 	{
 		if (m_CurSize + count < m_CurSize)
 		{
@@ -353,7 +353,7 @@ public:
 		return S_OK;
 	}
 
-	EFFECTSAPI HRESULT Insert(_In_ const T& var, _In_ uint32_t index)
+	HRESULT Insert(_In_ const T& var, _In_ uint32_t index)
 	{
 		assert(index < m_CurSize);
 
@@ -367,7 +367,7 @@ public:
 		return S_OK;
 	}
 
-	EFFECTSAPI HRESULT InsertRange(_In_reads_(count) const T *pVar, _In_ uint32_t index, _In_ uint32_t count)
+	HRESULT InsertRange(_In_reads_(count) const T *pVar, _In_ uint32_t index, _In_ uint32_t count)
 	{
 		assert(index < m_CurSize);
 
@@ -394,7 +394,7 @@ public:
 	}
 
 	// Deletes element at index and shifts all other values down
-	EFFECTSAPI void Delete(_In_ uint32_t index)
+	void Delete(_In_ uint32_t index)
 	{
 		assert(index < m_CurSize);
 
@@ -403,7 +403,7 @@ public:
 	}
 
 	// Deletes element at index and moves the last element into its place
-	EFFECTSAPI void QuickDelete(_In_ uint32_t index)
+	void QuickDelete(_In_ uint32_t index)
 	{
 		assert(index < m_CurSize);
 
@@ -421,7 +421,7 @@ public:
 		return (T*)m_pData;
 	}
 
-	EFFECTSAPI uint32_t FindIndexOf(_In_ const void *pEntry) const
+	uint32_t FindIndexOf(_In_ const void *pEntry) const
 	{
 		for (size_t i = 0; i < m_CurSize; ++i)
 		{
@@ -432,7 +432,7 @@ public:
 		return -1;
 	}
 
-	EFFECTSAPI void Sort(int(__cdecl *pfnCompare)(const void *pElem1, const void *pElem2))
+	void Sort(int(__cdecl *pfnCompare)(const void *pElem1, const void *pElem2))
 	{
 		qsort(m_pData, m_CurSize, sizeof(T), pfnCompare);
 	}
@@ -441,7 +441,7 @@ public:
 //////////////////////////////////////////////////////////////////////////
 // CEffectVectorOwner - implements a vector of ptrs to objects. The vector owns the objects.
 //////////////////////////////////////////////////////////////////////////
-template<class T> class CEffectVectorOwner : public CEffectVector<T*>
+template<class T> class EFFECTSAPI CEffectVectorOwner : public CEffectVector<T*>
 {
 public:
 	~CEffectVectorOwner<T>()
@@ -454,14 +454,14 @@ public:
 		SAFE_DELETE_ARRAY(m_pData);
 	}
 
-	EFFECTSAPI void Clear()
+	void Clear()
 	{
 		Empty();
 		SAFE_DELETE_ARRAY(m_pData);
 		m_MaxSize = 0;
 	}
 
-	EFFECTSAPI void Empty()
+	void Empty()
 	{
 		// manually invoke destructor on all elements
 		for (size_t i = 0; i < m_CurSize; ++i)
@@ -472,7 +472,7 @@ public:
 		m_hLastError = S_OK;
 	}
 
-	EFFECTSAPI void Delete(_In_ uint32_t index)
+	void Delete(_In_ uint32_t index)
 	{
 		assert(index < m_CurSize);
 
@@ -486,7 +486,7 @@ public:
 	// Checked uint32_t, uint64_t
 	// Use CheckedNumber only with uint32_t and uint64_t
 	//////////////////////////////////////////////////////////////////////////
-	template <class T, T MaxValue> class CheckedNumber
+	template <class T, T MaxValue> class EFFECTSAPI CheckedNumber
 	{
 		T       m_Value;
 		bool    m_bValid;
@@ -554,7 +554,7 @@ public:
 			return *this;
 		}
 
-		EFFECTSAPI HRESULT GetValue(_Out_ T *pValue)
+		HRESULT GetValue(_Out_ T *pValue)
 		{
 			if (!m_bValid)
 			{
@@ -574,7 +574,7 @@ public:
 	// Data Block Store - A linked list of allocations
 	//////////////////////////////////////////////////////////////////////////
 
-	class CDataBlock
+	class EFFECTSAPI CDataBlock
 	{
 	protected:
 		uint32_t    m_size;
@@ -586,12 +586,12 @@ public:
 
 	public:
 		// AddData appends an existing use buffer to the data block
-		EFFECTSAPI HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ uint32_t bufferSize, _Outptr_ CDataBlock **ppBlock);
+		HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ uint32_t bufferSize, _Outptr_ CDataBlock **ppBlock);
 
 		// Allocate reserves bufferSize bytes of contiguous memory and returns a pointer to the user
-		EFFECTSAPI void*   Allocate(_In_ uint32_t bufferSize, _Outptr_ CDataBlock **ppBlock);
+		void*   Allocate(_In_ uint32_t bufferSize, _Outptr_ CDataBlock **ppBlock);
 
-		EFFECTSAPI void    EnableAlignment();
+		void    EnableAlignment();
 
 		CDataBlock();
 		~CDataBlock();
@@ -599,7 +599,7 @@ public:
 		friend class CDataBlockStore;
 	};
 
-	class CDataBlockStore
+	class EFFECTSAPI CDataBlockStore
 	{
 	protected:
 		CDataBlock  *m_pFirst;
@@ -614,16 +614,16 @@ public:
 #endif
 
 	public:
-		EFFECTSAPI HRESULT AddString(_In_z_ LPCSTR pString, _Inout_ uint32_t *pOffset);
+		HRESULT AddString(_In_z_ LPCSTR pString, _Inout_ uint32_t *pOffset);
 		// Writes a null-terminated string to buffer
 
-		EFFECTSAPI HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ uint32_t bufferSize, _Inout_ uint32_t *pOffset);
+		HRESULT AddData(_In_reads_bytes_(bufferSize) const void *pNewData, _In_ uint32_t bufferSize, _Inout_ uint32_t *pOffset);
 		// Writes data block to buffer
 
 		// Memory allocator support
-		EFFECTSAPI void*   Allocate(_In_ uint32_t bufferSize);
-		EFFECTSAPI uint32_t GetSize();
-		EFFECTSAPI void    EnableAlignment();
+		void*   Allocate(_In_ uint32_t bufferSize);
+		uint32_t GetSize();
+		void    EnableAlignment();
 
 		CDataBlockStore();
 		~CDataBlockStore();
@@ -806,11 +806,11 @@ public:
 	};
 
 	template<typename T, bool(*pfnIsEqual)(const T &Data1, const T &Data2)>
-	class CEffectHashTable
+	class EFFECTSAPI CEffectHashTable
 	{
 	protected:
 
-		struct SHashEntry
+		struct EFFECTSAPI SHashEntry
 		{
 			uint32_t    Hash;
 			T           Data;
@@ -824,7 +824,7 @@ public:
 		bool        m_bOwnHashEntryArray;
 
 	public:
-		class CIterator
+		class EFFECTSAPI CIterator
 		{
 			friend class CEffectHashTable;
 
@@ -840,7 +840,7 @@ public:
 				return pHashEntry->Data;
 			}
 
-			EFFECTSAPI uint32_t GetHash()
+			uint32_t GetHash()
 			{
 				assert(pHashEntry != 0);
 				_Analysis_assume_(pHashEntry != 0);
@@ -852,7 +852,7 @@ public:
 		{
 		}
 
-		EFFECTSAPI HRESULT Initialize(_In_ const CEffectHashTable *pOther)
+		HRESULT Initialize(_In_ const CEffectHashTable *pOther)
 		{
 			HRESULT hr = S_OK;
 			SHashEntry **rgpNewHashEntries = nullptr;
@@ -906,7 +906,7 @@ public:
 		}
 
 	protected:
-		EFFECTSAPI void CleanArray()
+		void CleanArray()
 		{
 			if (m_bOwnHashEntryArray)
 			{
@@ -916,7 +916,7 @@ public:
 		}
 
 	public:
-		EFFECTSAPI void Cleanup()
+		void Cleanup()
 		{
 			for (size_t i = 0; i < m_NumHashSlots; ++i)
 			{
@@ -940,7 +940,7 @@ public:
 			Cleanup();
 		}
 
-		EFFECTSAPI static uint32_t GetNextHashTableSize(_In_ uint32_t DesiredSize)
+		static uint32_t GetNextHashTableSize(_In_ uint32_t DesiredSize)
 		{
 			// figure out the next logical size to use
 			for (size_t i = 0; i < _countof(c_PrimeSizes); ++i)
@@ -957,7 +957,7 @@ public:
 		// O(n) function
 		// Grows to the next suitable size (based off of the prime number table)
 		// DesiredSize is merely a suggestion
-		EFFECTSAPI HRESULT Grow(_In_ uint32_t DesiredSize,
+		HRESULT Grow(_In_ uint32_t DesiredSize,
 			_In_ uint32_t ProvidedArraySize = 0,
 			_In_reads_opt_(ProvidedArraySize) void** ProvidedArray = nullptr,
 			_In_ bool OwnProvidedArray = false)
@@ -1017,7 +1017,7 @@ public:
 			return hr;
 		}
 
-		EFFECTSAPI HRESULT AutoGrow()
+		HRESULT AutoGrow()
 		{
 			// arbitrary heuristic -- grow if 1:1
 			if (m_NumEntries >= m_NumHashSlots)
@@ -1029,7 +1029,7 @@ public:
 		}
 
 #if _DEBUG
-		EFFECTSAPI void PrintHashTableStats()
+		void PrintHashTableStats()
 		{
 			if (m_NumHashSlots == 0)
 			{
@@ -1091,7 +1091,7 @@ public:
 #endif // _DEBUG
 
 		// S_OK if element is found, E_FAIL otherwise
-		EFFECTSAPI HRESULT FindValueWithHash(_In_ T Data, _In_ uint32_t Hash, _Out_ CIterator *pIterator)
+		HRESULT FindValueWithHash(_In_ T Data, _In_ uint32_t Hash, _Out_ CIterator *pIterator)
 		{
 			assert(m_NumHashSlots > 0);
 
@@ -1111,7 +1111,7 @@ public:
 		}
 
 		// S_OK if element is found, E_FAIL otherwise
-		EFFECTSAPI HRESULT FindFirstMatchingValue(_In_ uint32_t Hash, _Out_ CIterator *pIterator)
+		HRESULT FindFirstMatchingValue(_In_ uint32_t Hash, _Out_ CIterator *pIterator)
 		{
 			assert(m_NumHashSlots > 0);
 
@@ -1131,7 +1131,7 @@ public:
 		}
 
 		// Adds data at the specified hash slot without checking for existence
-		EFFECTSAPI HRESULT AddValueWithHash(_In_ T Data, _In_ uint32_t Hash)
+		HRESULT AddValueWithHash(_In_ T Data, _In_ uint32_t Hash)
 		{
 			HRESULT hr = S_OK;
 
@@ -1157,7 +1157,7 @@ public:
 		// CMyHashTable::CIterator myIt;
 		// for (myTable.GetFirstEntry(&myIt); !myTable.PastEnd(&myIt); myTable.GetNextEntry(&myIt)
 		// { myTable.GetData(&myIt); }
-		EFFECTSAPI void GetFirstEntry(_Out_ CIterator *pIterator)
+		void GetFirstEntry(_Out_ CIterator *pIterator)
 		{
 			SHashEntry **ppEnd = m_rgpHashEntries + m_NumHashSlots;
 			pIterator->ppHashSlot = m_rgpHashEntries;
@@ -1172,14 +1172,14 @@ public:
 			}
 		}
 
-		EFFECTSAPI bool PastEnd(_Inout_ CIterator *pIterator)
+		bool PastEnd(_Inout_ CIterator *pIterator)
 		{
 			SHashEntry **ppEnd = m_rgpHashEntries + m_NumHashSlots;
 			assert(pIterator->ppHashSlot >= m_rgpHashEntries && pIterator->ppHashSlot <= ppEnd);
 			return (pIterator->ppHashSlot == ppEnd);
 		}
 
-		EFFECTSAPI void GetNextEntry(_Inout_ CIterator *pIterator)
+		void GetNextEntry(_Inout_ CIterator *pIterator)
 		{
 			SHashEntry **ppEnd = m_rgpHashEntries + m_NumHashSlots;
 			assert(pIterator->ppHashSlot >= m_rgpHashEntries && pIterator->ppHashSlot <= ppEnd);
@@ -1205,7 +1205,7 @@ public:
 			// hit the end of the list, ppHashSlot == ppEnd
 		}
 
-		EFFECTSAPI void RemoveEntry(_Inout_ CIterator *pIterator)
+		void RemoveEntry(_Inout_ CIterator *pIterator)
 		{
 			SHashEntry *pTemp;
 			SHashEntry **ppPrev;
@@ -1237,7 +1237,7 @@ public:
 	// a private heap
 
 	template<typename T, bool(*pfnIsEqual)(const T &Data1, const T &Data2)>
-	class CEffectHashTableWithPrivateHeap : public CEffectHashTable<T, pfnIsEqual>
+	class EFFECTSAPI CEffectHashTableWithPrivateHeap : public CEffectHashTable<T, pfnIsEqual>
 	{
 	protected:
 		CDataBlockStore *m_pPrivateHeap;
@@ -1248,7 +1248,7 @@ public:
 			m_pPrivateHeap = nullptr;
 		}
 
-		EFFECTSAPI void Cleanup()
+		void Cleanup()
 		{
 			CleanArray();
 			m_NumHashSlots = 0;
@@ -1261,14 +1261,14 @@ public:
 		}
 
 		// Call this only once
-		EFFECTSAPI void SetPrivateHeap(_In_ CDataBlockStore *pPrivateHeap)
+		void SetPrivateHeap(_In_ CDataBlockStore *pPrivateHeap)
 		{
 			assert(nullptr == m_pPrivateHeap);
 			m_pPrivateHeap = pPrivateHeap;
 		}
 
 		// Adds data at the specified hash slot without checking for existence
-		EFFECTSAPI HRESULT AddValueWithHash(_In_ T Data, _In_ uint32_t Hash)
+		HRESULT AddValueWithHash(_In_ T Data, _In_ uint32_t Hash)
 		{
 			HRESULT hr = S_OK;
 

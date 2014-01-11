@@ -44,7 +44,7 @@ SDepthStencilView g_NullDepthStencilView;
 // 3) SetSamplers
 // 4) SetShaderResources
 // 5) CreateShader
-SD3DShaderVTable g_vtPS = {
+EFFECTSAPI SD3DShaderVTable g_vtPS = {
 	(void(__stdcall ID3D11DeviceContext::*)(ID3D11DeviceChild*, ID3D11ClassInstance*const*, uint32_t)) &ID3D11DeviceContext::PSSetShader,
 	&ID3D11DeviceContext::PSSetConstantBuffers,
 	&ID3D11DeviceContext::PSSetSamplers,
@@ -52,7 +52,7 @@ SD3DShaderVTable g_vtPS = {
 	(HRESULT(__stdcall ID3D11Device::*)(const void *, size_t, ID3D11ClassLinkage*, ID3D11DeviceChild **)) &ID3D11Device::CreatePixelShader
 };
 
-SD3DShaderVTable g_vtVS = {
+EFFECTSAPI SD3DShaderVTable g_vtVS = {
 	(void(__stdcall ID3D11DeviceContext::*)(ID3D11DeviceChild*, ID3D11ClassInstance*const*, uint32_t)) &ID3D11DeviceContext::VSSetShader,
 	&ID3D11DeviceContext::VSSetConstantBuffers,
 	&ID3D11DeviceContext::VSSetSamplers,
@@ -60,7 +60,7 @@ SD3DShaderVTable g_vtVS = {
 	(HRESULT(__stdcall ID3D11Device::*)(const void *, size_t, ID3D11ClassLinkage*, ID3D11DeviceChild **)) &ID3D11Device::CreateVertexShader
 };
 
-SD3DShaderVTable g_vtGS = {
+EFFECTSAPI SD3DShaderVTable g_vtGS = {
 	(void(__stdcall ID3D11DeviceContext::*)(ID3D11DeviceChild*, ID3D11ClassInstance*const*, uint32_t)) &ID3D11DeviceContext::GSSetShader,
 	&ID3D11DeviceContext::GSSetConstantBuffers,
 	&ID3D11DeviceContext::GSSetSamplers,
@@ -68,7 +68,7 @@ SD3DShaderVTable g_vtGS = {
 	(HRESULT(__stdcall ID3D11Device::*)(const void *, size_t, ID3D11ClassLinkage*, ID3D11DeviceChild **)) &ID3D11Device::CreateGeometryShader
 };
 
-SD3DShaderVTable g_vtHS = {
+EFFECTSAPI SD3DShaderVTable g_vtHS = {
 	(void(__stdcall ID3D11DeviceContext::*)(ID3D11DeviceChild*, ID3D11ClassInstance*const*, uint32_t)) &ID3D11DeviceContext::HSSetShader,
 	&ID3D11DeviceContext::HSSetConstantBuffers,
 	&ID3D11DeviceContext::HSSetSamplers,
@@ -76,7 +76,7 @@ SD3DShaderVTable g_vtHS = {
 	(HRESULT(__stdcall ID3D11Device::*)(const void *, size_t, ID3D11ClassLinkage*, ID3D11DeviceChild **)) &ID3D11Device::CreateHullShader
 };
 
-SD3DShaderVTable g_vtDS = {
+EFFECTSAPI SD3DShaderVTable g_vtDS = {
 	(void(__stdcall ID3D11DeviceContext::*)(ID3D11DeviceChild*, ID3D11ClassInstance*const*, uint32_t)) &ID3D11DeviceContext::DSSetShader,
 	&ID3D11DeviceContext::DSSetConstantBuffers,
 	&ID3D11DeviceContext::DSSetSamplers,
@@ -84,7 +84,7 @@ SD3DShaderVTable g_vtDS = {
 	(HRESULT(__stdcall ID3D11Device::*)(const void *, size_t, ID3D11ClassLinkage*, ID3D11DeviceChild **)) &ID3D11Device::CreateDomainShader
 };
 
-SD3DShaderVTable g_vtCS = {
+EFFECTSAPI SD3DShaderVTable g_vtCS = {
 	(void(__stdcall ID3D11DeviceContext::*)(ID3D11DeviceChild*, ID3D11ClassInstance*const*, uint32_t)) &ID3D11DeviceContext::CSSetShader,
 	&ID3D11DeviceContext::CSSetConstantBuffers,
 	&ID3D11DeviceContext::CSSetSamplers,
@@ -191,11 +191,11 @@ inline HRESULT VerifyPointer(uint32_t oBase, uint32_t dwSize, uint32_t dwMaxSize
 // A simple class which assists in adding data to a block of memory
 //////////////////////////////////////////////////////////////////////////
 
-CEffectHeap::CEffectHeap() : m_pData(nullptr), m_dwSize(0), m_dwBufferSize(0)
+EFFECTSAPI CEffectHeap::CEffectHeap() : m_pData(nullptr), m_dwSize(0), m_dwBufferSize(0)
 {
 }
 
-CEffectHeap::~CEffectHeap()
+EFFECTSAPI CEffectHeap::~CEffectHeap()
 {
 	SAFE_DELETE_ARRAY(m_pData);
 }

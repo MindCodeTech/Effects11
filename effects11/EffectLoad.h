@@ -36,7 +36,7 @@ enum ERanges
 	ER_Count        // This should be the size of the enum
 };
 
-struct SRange
+struct EFFECTSAPI SRange
 {
 	uint32_t              start;
 	uint32_t              last;
@@ -44,10 +44,10 @@ struct SRange
 };
 
 // Used during load to validate assignments
-D3D_SHADER_VARIABLE_TYPE GetSimpleParameterTypeFromObjectType(EObjectType ObjectType);
+EFFECTSAPI D3D_SHADER_VARIABLE_TYPE GetSimpleParameterTypeFromObjectType(EObjectType ObjectType);
 
 // A class to facilitate loading an Effect.  This class is a friend of CEffect.
-class CEffectLoader
+class EFFECTSAPI CEffectLoader
 {
 	friend EFFECTSAPI HRESULT CEffect::CloneEffect(_In_ uint32_t Flags, _Outptr_ ID3DX11Effect** ppClonedEffect);
 
@@ -98,64 +98,64 @@ public:
 	uint32_t                    m_ReflectionMemory; // Reflection private heap
 
 	// Loader helpers
-	EFFECTSAPI HRESULT LoadCBs();
-	EFFECTSAPI HRESULT LoadNumericVariable(_In_ SConstantBuffer *pParentCB);
-	EFFECTSAPI HRESULT LoadObjectVariables();
-	EFFECTSAPI HRESULT LoadInterfaceVariables();
+	HRESULT LoadCBs();
+	HRESULT LoadNumericVariable(_In_ SConstantBuffer *pParentCB);
+	HRESULT LoadObjectVariables();
+	HRESULT LoadInterfaceVariables();
 
-	EFFECTSAPI HRESULT LoadTypeAndAddToPool(_Outptr_ SType **ppType, _In_ uint32_t dwOffset);
-	EFFECTSAPI HRESULT LoadStringAndAddToPool(_Outptr_result_maybenull_z_ char **ppString, _In_ uint32_t  dwOffset);
-	EFFECTSAPI HRESULT LoadAssignments(_In_ uint32_t Assignments, _Out_writes_(Assignments) SAssignment **pAssignments,
+	HRESULT LoadTypeAndAddToPool(_Outptr_ SType **ppType, _In_ uint32_t dwOffset);
+	HRESULT LoadStringAndAddToPool(_Outptr_result_maybenull_z_ char **ppString, _In_ uint32_t  dwOffset);
+	HRESULT LoadAssignments(_In_ uint32_t Assignments, _Out_writes_(Assignments) SAssignment **pAssignments,
 		_In_ uint8_t *pBackingStore, _Out_opt_ uint32_t *pRTVAssignments, _Out_opt_ uint32_t *pFinalAssignments);
-	EFFECTSAPI HRESULT LoadGroups();
-	EFFECTSAPI HRESULT LoadTechnique(STechnique* pTech);
-	EFFECTSAPI HRESULT LoadAnnotations(uint32_t  *pcAnnotations, SAnnotation **ppAnnotations);
+	HRESULT LoadGroups();
+	HRESULT LoadTechnique(STechnique* pTech);
+	HRESULT LoadAnnotations(uint32_t  *pcAnnotations, SAnnotation **ppAnnotations);
 
-	EFFECTSAPI HRESULT ExecuteConstantAssignment(_In_ const SBinaryConstant *pConstant, _Out_writes_bytes_(4) void *pLHS, _In_ D3D_SHADER_VARIABLE_TYPE lhsType);
-	EFFECTSAPI uint32_t UnpackData(uint8_t *pDestData, uint8_t *pSrcData, uint32_t PackedDataSize, SType *pType, uint32_t  *pBytesRead);
+	HRESULT ExecuteConstantAssignment(_In_ const SBinaryConstant *pConstant, _Out_writes_bytes_(4) void *pLHS, _In_ D3D_SHADER_VARIABLE_TYPE lhsType);
+	uint32_t UnpackData(uint8_t *pDestData, uint8_t *pSrcData, uint32_t PackedDataSize, SType *pType, uint32_t  *pBytesRead);
 
 	// Build shader blocks
-	EFFECTSAPI HRESULT ConvertRangesToBindings(SShaderBlock *pShaderBlock, CEffectVector<SRange> *pvRanges);
-	EFFECTSAPI HRESULT GrabShaderData(SShaderBlock *pShaderBlock);
-	EFFECTSAPI HRESULT BuildShaderBlock(SShaderBlock *pShaderBlock);
+	HRESULT ConvertRangesToBindings(SShaderBlock *pShaderBlock, CEffectVector<SRange> *pvRanges);
+	HRESULT GrabShaderData(SShaderBlock *pShaderBlock);
+	HRESULT BuildShaderBlock(SShaderBlock *pShaderBlock);
 
 	// Memory compactors
-	EFFECTSAPI HRESULT InitializeReflectionDataAndMoveStrings(uint32_t KnownSize = 0);
-	EFFECTSAPI HRESULT ReallocateReflectionData(bool Cloning = false);
-	EFFECTSAPI HRESULT ReallocateEffectData(bool Cloning = false);
-	EFFECTSAPI HRESULT ReallocateShaderBlocks();
+	HRESULT InitializeReflectionDataAndMoveStrings(uint32_t KnownSize = 0);
+	HRESULT ReallocateReflectionData(bool Cloning = false);
+	HRESULT ReallocateEffectData(bool Cloning = false);
+	HRESULT ReallocateShaderBlocks();
 	template<class T> EFFECTSAPI HRESULT ReallocateBlockAssignments(T* &pBlocks, uint32_t  cBlocks, T* pOldBlocks = nullptr);
-	EFFECTSAPI HRESULT ReallocateAnnotationData(uint32_t  cAnnotations, SAnnotation **ppAnnotations);
+	HRESULT ReallocateAnnotationData(uint32_t  cAnnotations, SAnnotation **ppAnnotations);
 
-	EFFECTSAPI HRESULT CalculateAnnotationSize(uint32_t  cAnnotations, SAnnotation *pAnnotations);
-	EFFECTSAPI uint32_t  CalculateShaderBlockSize();
+	HRESULT CalculateAnnotationSize(uint32_t  cAnnotations, SAnnotation *pAnnotations);
+	uint32_t  CalculateShaderBlockSize();
 	template<class T> EFFECTSAPI uint32_t  CalculateBlockAssignmentSize(T* &pBlocks, uint32_t  cBlocks);
 
-	EFFECTSAPI HRESULT FixupCBPointer(_Inout_ SConstantBuffer **ppCB);
-	EFFECTSAPI HRESULT FixupShaderPointer(_Inout_ SShaderBlock **ppShaderBlock);
-	EFFECTSAPI HRESULT FixupDSPointer(_Inout_ SDepthStencilBlock **ppDSBlock);
-	EFFECTSAPI HRESULT FixupABPointer(_Inout_ SBlendBlock **ppABBlock);
-	EFFECTSAPI HRESULT FixupRSPointer(_Inout_ SRasterizerBlock **ppRSBlock);
-	EFFECTSAPI HRESULT FixupInterfacePointer(_Inout_ SInterface **ppInterface, _In_ bool CheckBackgroundInterfaces);
-	EFFECTSAPI HRESULT FixupShaderResourcePointer(_Inout_ SShaderResource **ppResource);
-	EFFECTSAPI HRESULT FixupUnorderedAccessViewPointer(_Inout_ SUnorderedAccessView **ppResource);
-	EFFECTSAPI HRESULT FixupRenderTargetViewPointer(_Inout_ SRenderTargetView **ppRenderTargetView);
-	EFFECTSAPI HRESULT FixupDepthStencilViewPointer(_Inout_ SDepthStencilView **ppDepthStencilView);
-	EFFECTSAPI HRESULT FixupSamplerPointer(_Inout_ SSamplerBlock **ppSampler);
-	EFFECTSAPI HRESULT FixupVariablePointer(_Inout_ SGlobalVariable **ppVar);
-	EFFECTSAPI HRESULT FixupStringPointer(_Inout_ SString **ppString);
-	EFFECTSAPI HRESULT FixupMemberDataPointer(_Inout_ SMemberDataPointer **ppMemberData);
-	EFFECTSAPI HRESULT FixupGroupPointer(_Inout_ SGroup **ppGroup);
+	HRESULT FixupCBPointer(_Inout_ SConstantBuffer **ppCB);
+	HRESULT FixupShaderPointer(_Inout_ SShaderBlock **ppShaderBlock);
+	HRESULT FixupDSPointer(_Inout_ SDepthStencilBlock **ppDSBlock);
+	HRESULT FixupABPointer(_Inout_ SBlendBlock **ppABBlock);
+	HRESULT FixupRSPointer(_Inout_ SRasterizerBlock **ppRSBlock);
+	HRESULT FixupInterfacePointer(_Inout_ SInterface **ppInterface, _In_ bool CheckBackgroundInterfaces);
+	HRESULT FixupShaderResourcePointer(_Inout_ SShaderResource **ppResource);
+	HRESULT FixupUnorderedAccessViewPointer(_Inout_ SUnorderedAccessView **ppResource);
+	HRESULT FixupRenderTargetViewPointer(_Inout_ SRenderTargetView **ppRenderTargetView);
+	HRESULT FixupDepthStencilViewPointer(_Inout_ SDepthStencilView **ppDepthStencilView);
+	HRESULT FixupSamplerPointer(_Inout_ SSamplerBlock **ppSampler);
+	HRESULT FixupVariablePointer(_Inout_ SGlobalVariable **ppVar);
+	HRESULT FixupStringPointer(_Inout_ SString **ppString);
+	HRESULT FixupMemberDataPointer(_Inout_ SMemberDataPointer **ppMemberData);
+	HRESULT FixupGroupPointer(_Inout_ SGroup **ppGroup);
 
 	// Methods to retrieve data from the unstructured block
 	// (these do not make copies; they simply return pointers into the block)
-	EFFECTSAPI HRESULT GetStringAndAddToReflection(_In_ uint32_t offset, _Outptr_result_maybenull_z_ char **ppPointer);  // Returns a string from the file string block, updates m_EffectMemory
-	EFFECTSAPI HRESULT GetUnstructuredDataBlock(_In_ uint32_t offset, _Out_ uint32_t *pdwSize, _Outptr_result_buffer_(*pdwSize) void **ppData);
+	HRESULT GetStringAndAddToReflection(_In_ uint32_t offset, _Outptr_result_maybenull_z_ char **ppPointer);  // Returns a string from the file string block, updates m_EffectMemory
+	HRESULT GetUnstructuredDataBlock(_In_ uint32_t offset, _Out_ uint32_t *pdwSize, _Outptr_result_buffer_(*pdwSize) void **ppData);
 	// This function makes a copy of the array of SInterfaceParameters, but not a copy of the strings
-	EFFECTSAPI HRESULT GetInterfaceParametersAndAddToReflection(_In_ uint32_t InterfaceCount, _In_ uint32_t offset, _Outptr_result_buffer_all_maybenull_(InterfaceCount) SShaderBlock::SInterfaceParameter **ppInterfaces);
+	HRESULT GetInterfaceParametersAndAddToReflection(_In_ uint32_t InterfaceCount, _In_ uint32_t offset, _Outptr_result_buffer_all_maybenull_(InterfaceCount) SShaderBlock::SInterfaceParameter **ppInterfaces);
 public:
 
-	EFFECTSAPI HRESULT LoadEffect(_In_ CEffect *pEffect, _In_reads_bytes_(cbEffectBuffer) const void *pEffectBuffer, _In_ uint32_t cbEffectBuffer);
+	HRESULT LoadEffect(_In_ CEffect *pEffect, _In_reads_bytes_(cbEffectBuffer) const void *pEffectBuffer, _In_ uint32_t cbEffectBuffer);
 };
 
 NAMESPACE_D3DX11Effects_END

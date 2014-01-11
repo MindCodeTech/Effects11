@@ -618,12 +618,12 @@ static HRESULT ObjectGetRawValue()
 	return D3DERR_INVALIDCALL;
 }
 
-ID3DX11EffectConstantBuffer * NoParentCB();
+EFFECTSAPI ID3DX11EffectConstantBuffer * NoParentCB();
 
-ID3DX11EffectVariable * GetAnnotationByIndexHelper(_In_z_ const char *pClassName, _In_ uint32_t Index,
+EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByIndexHelper(_In_z_ const char *pClassName, _In_ uint32_t Index,
 	_In_ uint32_t  AnnotationCount, _In_reads_(AnnotationCount) SAnnotation *pAnnotations);
 
-ID3DX11EffectVariable * GetAnnotationByNameHelper(_In_z_ const char *pClassName, _In_z_ LPCSTR Name,
+EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByNameHelper(_In_z_ const char *pClassName, _In_z_ LPCSTR Name,
 	_In_ uint32_t  AnnotationCount, _In_reads_(AnnotationCount) SAnnotation *pAnnotations);
 
 template<typename SVarType>

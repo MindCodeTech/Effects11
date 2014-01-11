@@ -25,7 +25,7 @@ NAMESPACE_D3DX11Effects
 // CSOParser
 //////////////////////////////////////////////////////////////////////////
 
-class CSOParser
+class EFFECTSAPI CSOParser
 {
 	CEffectVector<D3D11_SO_DECLARATION_ENTRY>   m_vDecls;                                       // Set of parsed decl entries
 	D3D11_SO_DECLARATION_ENTRY                  m_newEntry;                                     // Currently parsing entry
@@ -51,14 +51,14 @@ public:
 	}
 
 	// Parse a single string, assuming stream 0
-	EFFECTSAPI HRESULT Parse(_In_z_ LPCSTR pString)
+	HRESULT Parse(_In_z_ LPCSTR pString)
 	{
 		m_vDecls.Clear();
 		return Parse(0, pString);
 	}
 
 	// Parse all 4 streams
-	EFFECTSAPI HRESULT Parse(_In_z_ LPSTR pStreams[D3D11_SO_STREAM_COUNT])
+	HRESULT Parse(_In_z_ LPSTR pStreams[D3D11_SO_STREAM_COUNT])
 	{
 		HRESULT hr = S_OK;
 		m_vDecls.Clear();
@@ -78,23 +78,23 @@ public:
 	}
 
 	// Return resulting declarations
-	EFFECTSAPI D3D11_SO_DECLARATION_ENTRY *GetDeclArray()
+	D3D11_SO_DECLARATION_ENTRY *GetDeclArray()
 	{
 		return &m_vDecls[0];
 	}
 
-	EFFECTSAPI char* GetErrorString()
+	char* GetErrorString()
 	{
 		return m_pError;
 	}
 
-	EFFECTSAPI uint32_t GetDeclCount() const
+	uint32_t GetDeclCount() const
 	{
 		return m_vDecls.GetSize();
 	}
 
 	// Return resulting buffer strides
-	EFFECTSAPI void GetStrides(uint32_t strides[4])
+	void GetStrides(uint32_t strides[4])
 	{
 		size_t  len = GetDeclCount();
 		strides[0] = strides[1] = strides[2] = strides[3] = 0;
@@ -108,7 +108,7 @@ public:
 protected:
 
 	// Parse a single string "[<slot> :] <semantic>[<index>][.<mask>]; [[<slot> :] <semantic>[<index>][.<mask>][;]]"
-	EFFECTSAPI HRESULT Parse(_In_ uint32_t Stream, _In_z_ LPCSTR pString)
+	HRESULT Parse(_In_ uint32_t Stream, _In_z_ LPCSTR pString)
 	{
 		HRESULT hr = S_OK;
 
@@ -168,7 +168,7 @@ protected:
 	}
 
 	// Parse a single decl  "[<slot> :] <semantic>[<index>][.<mask>]"
-	EFFECTSAPI HRESULT AddSemantic(_Inout_z_ LPSTR pSemantic)
+	HRESULT AddSemantic(_Inout_z_ LPSTR pSemantic)
 	{
 		HRESULT hr = S_OK;
 
@@ -190,7 +190,7 @@ protected:
 	}
 
 	// Parse optional mask "[.<mask>]"
-	EFFECTSAPI HRESULT ConsumeRegisterMask(_Inout_z_ LPSTR pSemantic)
+	HRESULT ConsumeRegisterMask(_Inout_z_ LPSTR pSemantic)
 	{
 		HRESULT hr = S_OK;
 		const char *pFullMask1 = "xyzw";
@@ -241,7 +241,7 @@ protected:
 	}
 
 	// Parse optional output slot "[<slot> :]"
-	EFFECTSAPI HRESULT ConsumeOutputSlot(_Inout_z_ LPSTR* ppSemantic)
+	HRESULT ConsumeOutputSlot(_Inout_z_ LPSTR* ppSemantic)
 	{
 		assert(ppSemantic && *ppSemantic);
 		_Analysis_assume_(ppSemantic && *ppSemantic);
@@ -290,7 +290,7 @@ protected:
 	}
 
 	// Parse optional index "[<index>]"
-	EFFECTSAPI HRESULT ConsumeSemanticIndex(_Inout_z_ LPSTR pSemantic)
+	HRESULT ConsumeSemanticIndex(_Inout_z_ LPSTR pSemantic)
 	{
 		assert(pSemantic);
 

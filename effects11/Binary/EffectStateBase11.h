@@ -25,7 +25,7 @@ NAMESPACE_D3DX11Effects
 // Effect HLSL states and late resolve lists
 //////////////////////////////////////////////////////////////////////////
 
-struct RValue
+struct EFFECTSAPI RValue
 {
 	const char  *m_pName;
 	uint32_t    m_Value;
@@ -36,7 +36,7 @@ struct RValue
 
 enum ELhsType;
 
-struct LValue
+struct EFFECTSAPI LValue
 {
 	const char      *m_pName;           // name of the LHS side of expression
 	EBlockType      m_BlockType;        // type of block it can appear in

@@ -49,7 +49,7 @@ SEffectInvalidGroup g_InvalidGroup;
 // Helper routine implementations
 //////////////////////////////////////////////////////////////////////////
 
-ID3DX11EffectConstantBuffer * NoParentCB()
+EFFECTSAPI ID3DX11EffectConstantBuffer * NoParentCB()
 {
 	DPF(0, "ID3DX11EffectVariable::GetParentConstantBuffer: Variable does not have a parent constant buffer");
 	// have to typecast because the type of g_InvalidScalarVariable has not been declared yet
@@ -57,7 +57,7 @@ ID3DX11EffectConstantBuffer * NoParentCB()
 }
 
 _Use_decl_annotations_
-ID3DX11EffectVariable * GetAnnotationByIndexHelper(const char *pClassName, uint32_t Index, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
+EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByIndexHelper(const char *pClassName, uint32_t Index, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
 {
 	if (Index >= AnnotationCount)
 	{
@@ -69,7 +69,7 @@ ID3DX11EffectVariable * GetAnnotationByIndexHelper(const char *pClassName, uint3
 }
 
 _Use_decl_annotations_
-ID3DX11EffectVariable * GetAnnotationByNameHelper(const char *pClassName, LPCSTR Name, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
+EFFECTSAPI ID3DX11EffectVariable * GetAnnotationByNameHelper(const char *pClassName, LPCSTR Name, uint32_t  AnnotationCount, SAnnotation *pAnnotations)
 {
 	uint32_t  i;
 	for (i = 0; i < AnnotationCount; ++i)
@@ -601,7 +601,7 @@ lExit:
 // ID3DX11EffectShaderVariable (SAnonymousShader implementation)
 ////////////////////////////////////////////////////////////////////////////////
 
-SAnonymousShader::SAnonymousShader(_In_ SShaderBlock *pBlock) : pShaderBlock(pBlock)
+EFFECTSAPI SAnonymousShader::SAnonymousShader(_In_ SShaderBlock *pBlock) : pShaderBlock(pBlock)
 {
 }
 
@@ -1418,12 +1418,12 @@ lExit:
 	return hr;
 }
 
-extern EFFECTSAPI SShaderBlock g_NullVS;
-extern EFFECTSAPI SShaderBlock g_NullGS;
-extern EFFECTSAPI SShaderBlock g_NullPS;
-extern EFFECTSAPI SShaderBlock g_NullHS;
-extern EFFECTSAPI SShaderBlock g_NullDS;
-extern EFFECTSAPI SShaderBlock g_NullCS;
+extern SShaderBlock g_NullVS;
+extern SShaderBlock g_NullGS;
+extern SShaderBlock g_NullPS;
+extern SShaderBlock g_NullHS;
+extern SShaderBlock g_NullDS;
+extern  SShaderBlock g_NullCS;
 
 SAnonymousShader g_AnonymousNullVS(&g_NullVS);
 SAnonymousShader g_AnonymousNullGS(&g_NullGS);

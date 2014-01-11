@@ -31,7 +31,7 @@ NAMESPACE_D3DX11Effects
 
 #define D3DX11_FXL_VERSION(_Major,_Minor) (('F' << 24) | ('X' << 16) | ((_Major) << 8) | (_Minor))
 
-struct EVersionTag
+struct EFFECTSAPI EVersionTag
 {
 	const char* m_pName;
 	DWORD       m_Version;
@@ -374,7 +374,7 @@ inline bool IsObjectAssignmentHelper(ELhsType LhsType)
 //           Annotation data (SBinaryAnnotation) * (NumAnnotations) *this structure is variable sized
 //           Pass assignments (SBinaryAssignment) * Pass.cAssignments
 
-struct SBinaryHeader
+struct EFFECTSAPI SBinaryHeader
 {
 	struct SVarCounts
 	{
@@ -413,7 +413,7 @@ struct SBinaryHeader
 	}
 };
 
-struct SBinaryHeader5 : public SBinaryHeader
+struct EFFECTSAPI SBinaryHeader5 : public SBinaryHeader
 {
 	uint32_t  cGroups;
 	uint32_t  cUnorderedAccessViews;
@@ -423,7 +423,7 @@ struct SBinaryHeader5 : public SBinaryHeader
 };
 
 // Constant buffer definition
-struct SBinaryConstantBuffer
+struct EFFECTSAPI SBinaryConstantBuffer
 {
 	// private flags
 	static const uint32_t   c_IsTBuffer = (1 << 0);
@@ -437,7 +437,7 @@ struct SBinaryConstantBuffer
 	// otherwise, -1
 };
 
-struct SBinaryAnnotation
+struct EFFECTSAPI SBinaryAnnotation
 {
 	uint32_t  oName;                // Offset to variable name
 	uint32_t  oType;                // Offset to type information (SBinaryType)
@@ -449,7 +449,7 @@ struct SBinaryAnnotation
 	// uint32_t  oStringOffsets[Elements]; // Elements comes from the type data at oType
 };
 
-struct SBinaryNumericVariable
+struct EFFECTSAPI SBinaryNumericVariable
 {
 	uint32_t  oName;                // Offset to variable name
 	uint32_t  oType;                // Offset to type information (SBinaryType)
@@ -459,7 +459,7 @@ struct SBinaryNumericVariable
 	uint32_t  Flags;                // Explicit bind point
 };
 
-struct SBinaryInterfaceVariable
+struct EFFECTSAPI SBinaryInterfaceVariable
 {
 	uint32_t  oName;                // Offset to variable name
 	uint32_t  oType;                // Offset to type information (SBinaryType)
@@ -467,13 +467,13 @@ struct SBinaryInterfaceVariable
 	uint32_t  Flags;
 };
 
-struct SBinaryInterfaceInitializer
+struct EFFECTSAPI SBinaryInterfaceInitializer
 {
 	uint32_t  oInstanceName;
 	uint32_t  ArrayIndex;
 };
 
-struct SBinaryObjectVariable
+struct EFFECTSAPI SBinaryObjectVariable
 {
 	uint32_t  oName;                // Offset to variable name
 	uint32_t  oType;                // Offset to type information (SBinaryType)
@@ -505,13 +505,13 @@ struct SBinaryObjectVariable
 	//   SBinaryShaderData5[Elements]
 };
 
-struct SBinaryGSSOInitializer
+struct EFFECTSAPI SBinaryGSSOInitializer
 {
 	uint32_t  oShader;              // Offset to shader bytecode data block
 	uint32_t  oSODecl;              // Offset to StreamOutput decl string
 };
 
-struct SBinaryShaderData5
+struct EFFECTSAPI SBinaryShaderData5
 {
 	uint32_t  oShader;              // Offset to shader bytecode data block
 	uint32_t  oSODecls[4];          // Offset to StreamOutput decl strings
@@ -521,7 +521,7 @@ struct SBinaryShaderData5
 	uint32_t  oInterfaceBindings;   // Offset to SBinaryInterfaceInitializer[cInterfaceBindings].
 };
 
-struct SBinaryType
+struct EFFECTSAPI SBinaryType
 {
 	uint32_t    oTypeName;      // Offset to friendly type name ("float4", "VS_OUTPUT")
 	EVarType    VarType;        // Numeric, Object, or Struct
@@ -533,7 +533,7 @@ struct SBinaryType
 	// No support for packed arrays
 	uint32_t    PackedSize;     // Size, in bytes, of this data typed when fully packed
 
-	struct SBinaryMember
+	struct EFFECTSAPI SBinaryMember
 	{
 		uint32_t    oName;          // Offset to structure member name ("m_pFoo")
 		uint32_t    oSemantic;      // Offset to semantic ("POSITION0")
@@ -559,7 +559,7 @@ struct SBinaryType
 	// Interface: (nothing)
 };
 
-struct SBinaryNumericType
+struct EFFECTSAPI SBinaryNumericType
 {
 	ENumericLayout  NumericLayout : 3;    // scalar (1x1), vector (1xN), matrix (NxN)
 	EScalarType     ScalarType : 5;    // float32, int32, int8, etc.
@@ -569,7 +569,7 @@ struct SBinaryNumericType
 	uint32_t        IsPackedArray : 1;    // if this is an array, indicates whether elements should be greedily packed
 };
 
-struct SBinaryTypeInheritance
+struct EFFECTSAPI SBinaryTypeInheritance
 {
 	uint32_t oBaseClass;            // Offset to base class type info or 0 if no base class.
 	uint32_t cInterfaces;
@@ -578,19 +578,19 @@ struct SBinaryTypeInheritance
 	// info of each interface.
 };
 
-struct SBinaryGroup
+struct EFFECTSAPI SBinaryGroup
 {
 	uint32_t  oName;
 	uint32_t  cTechniques;
 };
 
-struct SBinaryTechnique
+struct EFFECTSAPI SBinaryTechnique
 {
 	uint32_t  oName;
 	uint32_t  cPasses;
 };
 
-struct SBinaryPass
+struct EFFECTSAPI SBinaryPass
 {
 	uint32_t  oName;
 	uint32_t  cAssignments;
@@ -609,39 +609,39 @@ enum ECompilerAssignmentType
 	ECAT_InlineShader5,             // -Data block containing shader with extended 5.0 data (SBinaryShaderData5)
 };
 
-struct SBinaryAssignment
+struct EFFECTSAPI SBinaryAssignment
 {
 	uint32_t iState;                // index into g_lvGeneral
 	uint32_t Index;                 // the particular index to assign to (see g_lvGeneral to find the # of valid indices)
 	ECompilerAssignmentType AssignmentType;
 	uint32_t  oInitializer;         // Offset of assignment-specific data
 
-	struct SConstantIndex
+	struct EFFECTSAPI SConstantIndex
 	{
 		uint32_t  oArrayName;
 		uint32_t Index;
 	};
 
-	struct SVariableIndex
+	struct EFFECTSAPI SVariableIndex
 	{
 		uint32_t  oArrayName;
 		uint32_t  oIndexVarName;
 	};
 
-	struct SIndexedObjectExpression
+	struct EFFECTSAPI SIndexedObjectExpression
 	{
 		uint32_t  oArrayName;
 		uint32_t  oCode;
 	};
 
-	struct SInlineShader
+	struct EFFECTSAPI SInlineShader
 	{
 		uint32_t  oShader;
 		uint32_t  oSODecl;
 	};
 };
 
-struct SBinaryConstant
+struct EFFECTSAPI SBinaryConstant
 {
 	EScalarType Type;
 	union

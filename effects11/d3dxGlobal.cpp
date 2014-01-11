@@ -27,11 +27,11 @@ NAMESPACE_D3DX11Core
 // CMemoryStream - A class to simplify reading binary data
 //////////////////////////////////////////////////////////////////////////
 
-CMemoryStream::CMemoryStream() : m_pData(nullptr), m_cbData(0), m_readPtr(0)
+EFFECTSAPI CMemoryStream::CMemoryStream() : m_pData(nullptr), m_cbData(0), m_readPtr(0)
 {
 }
 
-CMemoryStream::~CMemoryStream()
+EFFECTSAPI CMemoryStream::~CMemoryStream()
 {
 }
 
@@ -128,7 +128,7 @@ NAMESPACE_D3DX11Core_END
 // CDataBlock - used to dynamically build up the effect file in memory
 //////////////////////////////////////////////////////////////////////////
 
-CDataBlock::CDataBlock() :
+EFFECTSAPI CDataBlock::CDataBlock() :
 m_size(0),
 m_maxSize(0),
 m_pData(nullptr),
@@ -137,7 +137,7 @@ m_IsAligned(false)
 {
 }
 
-CDataBlock::~CDataBlock()
+EFFECTSAPI CDataBlock::~CDataBlock()
 {
 	SAFE_DELETE_ARRAY(m_pData);
 	SAFE_DELETE(m_pNext);
@@ -254,7 +254,7 @@ EFFECTSAPI void* CDataBlock::Allocate(uint32_t bufferSize, CDataBlock **ppBlock)
 
 //////////////////////////////////////////////////////////////////////////
 
-CDataBlockStore::CDataBlockStore() :
+EFFECTSAPI CDataBlockStore::CDataBlockStore() :
 m_pFirst(nullptr),
 m_pLast(nullptr),
 m_Size(0),
@@ -266,7 +266,7 @@ m_IsAligned(false)
 #endif
 }
 
-CDataBlockStore::~CDataBlockStore()
+EFFECTSAPI CDataBlockStore::~CDataBlockStore()
 {
 	// Can't just do SAFE_DELETE(m_pFirst) since it blows the stack when deleting long chains of data
 	CDataBlock* pData = m_pFirst;
